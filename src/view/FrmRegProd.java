@@ -140,7 +140,7 @@ public class FrmRegProd extends JDialog {
 		tblSalida = new JTable();		
 		model = new DefaultTableModel();
 		tblSalida.setModel(model);
-		model.addColumn("Código");
+		model.addColumn("C\u00F3digo");
 		model.addColumn("Nombre");
 		model.addColumn("Categoría");
 		model.addColumn("Stock");
@@ -173,6 +173,18 @@ public class FrmRegProd extends JDialog {
 				
 				if (!validacion)
 					arg0.consume();				
+			}
+		});
+		
+
+		txtCantidad.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char tecla = e.getKeyChar();
+				boolean validacion = tecla < '0' || tecla > '9';
+				
+				if (validacion)
+					e.consume();
 			}
 		});
 		
