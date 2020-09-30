@@ -83,7 +83,8 @@ public class FrmPrincipal extends JFrame {
 		
 		mntmProductos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				FrmRegProd regProd = new FrmRegProd();
+				regProd.setVisible(true);
 			}
 		});
 		

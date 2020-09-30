@@ -109,15 +109,15 @@ public class FrmRegProd extends JDialog {
 		panel.add(txtPrecio);
 
 		JButton btnNuevo = new JButton("Nuevo");
-		btnNuevo.setBounds(336, 26, 116, 34);
+		btnNuevo.setBounds(333, 11, 116, 34);
 		panel.add(btnNuevo);
 
 		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(336, 76, 116, 34);
+		btnGuardar.setBounds(333, 61, 116, 34);
 		panel.add(btnGuardar);
 
 		JButton btnEditar = new JButton("Editar");
-		btnEditar.setBounds(336, 121, 116, 34);
+		btnEditar.setBounds(333, 110, 116, 34);
 		panel.add(btnEditar);
 
 		JButton btnConsultar = new JButton("Consultar");
