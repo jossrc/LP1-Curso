@@ -10,6 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.JButton;
+import com.toedter.calendar.JDateChooser;
 
 public class FrmReptVtas extends JDialog {
 	private static final long serialVersionUID = 1L;
@@ -50,7 +51,7 @@ public class FrmReptVtas extends JDialog {
 		panel.add(lblReporteVentas);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 108, 414, 142);
+		scrollPane.setBounds(10, 88, 414, 162);
 		panel.add(scrollPane);
 		
 		JTextArea txtS = new JTextArea();
@@ -59,6 +60,10 @@ public class FrmReptVtas extends JDialog {
 		JButton btnReporte = new JButton("Generar Reporte");
 		btnReporte.setBounds(268, 38, 137, 39);
 		panel.add(btnReporte);
+		
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(10, 44, 159, 22);
+		panel.add(dateChooser);
 
 	}
 }
