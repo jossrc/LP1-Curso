@@ -11,9 +11,16 @@ import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import javax.swing.JButton;
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.awt.event.ActionEvent;
 
 public class FrmReptVtas extends JDialog {
+	
 	private static final long serialVersionUID = 1L;
+	private JDateChooser txtFecha;
+	private JTextArea txtS;
+	private JButton btnReporte;
 
 	public static void main(String[] args) {
 		
@@ -54,16 +61,32 @@ public class FrmReptVtas extends JDialog {
 		scrollPane.setBounds(10, 88, 414, 162);
 		panel.add(scrollPane);
 		
-		JTextArea txtS = new JTextArea();
+		txtS = new JTextArea();
 		scrollPane.setViewportView(txtS);
 		
-		JButton btnReporte = new JButton("Generar Reporte");
+		btnReporte = new JButton("Generar Reporte");
 		btnReporte.setBounds(268, 38, 137, 39);
 		panel.add(btnReporte);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(10, 44, 159, 22);
-		panel.add(dateChooser);
+		txtFecha = new JDateChooser();
+		txtFecha.setBounds(10, 44, 159, 22);
+		panel.add(txtFecha);		
 
+		btnReporte.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				generarReporte();
+			}
+		});
 	}
+	
+	private void generarReporte() {
+		String fecha = leerFecha();
+		txtS.setText("Reporte del : " + fecha);
+	}
+	
+	private String leerFecha() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(txtFecha.getDate());
+	}
+
 }
