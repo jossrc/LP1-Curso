@@ -90,7 +90,8 @@ public class FrmPrincipal extends JFrame {
 		
 		mntmVentas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				FrmReptVtas reptVtas = new FrmReptVtas();
+				reptVtas.setVisible(true);
 			}
 		});
 		
