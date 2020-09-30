@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -13,15 +15,18 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FrmRegProd extends JDialog {
 
 	private static final long serialVersionUID = 1L;
+	private JTable tblSalida;
 	private JTextField txtCodigo;
 	private JTextField txtProducto;
 	private JTextField txtCantidad;
 	private JTextField txtPrecio;
-	private JTable tblSalida;
+	private JComboBox<String> cboTipo;
 
 	public static void main(String[] args) {
 
@@ -82,7 +87,7 @@ public class FrmRegProd extends JDialog {
 		lblTipo.setBounds(38, 96, 24, 14);
 		panel.add(lblTipo);
 
-		JComboBox<String> cboTipo = new JComboBox<String>();
+		cboTipo = new JComboBox<String>();
 		cboTipo.setModel(
 				new DefaultComboBoxModel<String>(new String[] { "Seleccione tipo", "Pastillas", "Jarabe", "Otros" }));
 		cboTipo.setBounds(96, 92, 123, 20);
@@ -131,5 +136,74 @@ public class FrmRegProd extends JDialog {
 		tblSalida = new JTable();
 		scrollPane.setViewportView(tblSalida);
 
+		btnNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
+	}
+
+	void ingresar() {
+
+	}
+
+	String leerCodigo() {
+		if (txtCodigo.getText().trim().isEmpty())
+			return null;
+
+		return txtCodigo.getText().trim();
+	}
+
+	int leerTipo() {
+
+		if (cboTipo.getSelectedIndex() == 0)
+			return -1;
+
+		return cboTipo.getSelectedIndex();
+	}
+
+	int leerCantidad() {
+
+		if (txtCantidad.getText().trim().isEmpty())
+			return -1;
+
+		return Integer.parseInt(txtCantidad.getText().trim());
+	}
+
+	double leerPrecio() {
+
+		if (txtPrecio.getText().trim().isEmpty())
+			return -1;
+		else {
+			try {
+				return Double.parseDouble(txtPrecio.getText().trim());
+			} catch (NumberFormatException e) {
+				System.out.println("Entro a la captura de Exception");
+				JOptionPane.showMessageDialog(null,
+						"Ooops error : " + e.getClass().getSimpleName() + "\nGenerado por : " + e.getMessage());
+				return -1;
+			}
+		}
+
+	}
+
+	String leerProducto() {
+
+		if (txtProducto.getText().trim().isEmpty())
+			return null;
+
+		return txtProducto.getText().trim();
 	}
 }
