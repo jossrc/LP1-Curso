@@ -18,6 +18,8 @@ import javax.swing.JTable;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class FrmRegProd extends JDialog {
 
@@ -161,7 +163,19 @@ public class FrmRegProd extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 
 			}
+		});		
+
+		txtPrecio.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				char tecla = arg0.getKeyChar();
+				boolean validacion = (tecla >= '0' && tecla <= '9') || tecla == '.';
+				
+				if (!validacion)
+					arg0.consume();				
+			}
 		});
+		
 	}
 
 	void ingresar() {
