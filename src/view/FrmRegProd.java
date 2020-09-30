@@ -20,6 +20,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FrmRegProd extends JDialog {
 
@@ -137,7 +139,7 @@ public class FrmRegProd extends JDialog {
 		scrollPane.setBounds(25, 166, 436, 136);
 		panel.add(scrollPane);
 
-		tblSalida = new JTable();		
+		tblSalida = new JTable();
 		model = new DefaultTableModel();
 		tblSalida.setModel(model);
 		model.addColumn("C\u00F3digo");
@@ -184,6 +186,17 @@ public class FrmRegProd extends JDialog {
 				
 				if (validacion)
 					e.consume();
+			}
+		});		
+		
+		tblSalida.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				int fila = tblSalida.getSelectedRow();
+				getValueRowAndSet(txtCodigo, fila, 0);
+				getValueRowAndSet(txtProducto, fila, 1);
+				getValueRowAndSet(txtCantidad, fila, 3);
+				getValueRowAndSet(txtPrecio, fila, 4);	
 			}
 		});
 		
