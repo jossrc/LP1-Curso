@@ -174,8 +174,7 @@ public class FrmRegProd extends JDialog {
 				if (!validacion)
 					arg0.consume();				
 			}
-		});
-		
+		});		
 
 		txtCantidad.addKeyListener(new KeyAdapter() {
 			@Override
@@ -204,7 +203,7 @@ public class FrmRegProd extends JDialog {
 		if (cantidad == -1 || precio == -1 || producto == null || tipo == -1)
 			JOptionPane.showMessageDialog(null, "Error en los datos");
 		else
-			JOptionPane.showMessageDialog(null, "Funciona");
+			insertarNuevaFila(codigo, producto, tipo, cantidad, precio);
 	}
 
 	String leerCodigo() {
@@ -249,4 +248,14 @@ public class FrmRegProd extends JDialog {
 
 		return txtProducto.getText().trim();
 	}
+	
+	void insertarNuevaFila(String codigo, String producto, int tipo, int cantidad, double precio) {
+		Object datos[] = {codigo, producto, tipo, cantidad, precio};
+		model.addRow(datos);
+	}
+	
+	void getValueRowAndSet(JTextField txt,int fila ,int pos) {
+		txt.setText(tblSalida.getValueAt(fila, pos).toString());
+	}
+	
 }
