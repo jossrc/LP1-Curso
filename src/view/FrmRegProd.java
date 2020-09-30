@@ -153,7 +153,7 @@ public class FrmRegProd extends JDialog {
 
 		btnGuardar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				ingresar();
 			}
 		});
 
@@ -165,7 +165,20 @@ public class FrmRegProd extends JDialog {
 	}
 
 	void ingresar() {
-
+		String codigo, producto;
+		int cantidad, tipo;
+		double precio;
+		
+		codigo = leerCodigo();
+		producto = leerProducto();
+		cantidad = leerCantidad();
+		tipo = leerTipo();
+		precio = leerPrecio();
+		
+		if (cantidad == -1 || precio == -1 || producto == null || tipo == -1)
+			JOptionPane.showMessageDialog(null, "Error en los datos");
+		else
+			JOptionPane.showMessageDialog(null, "Funciona");
 	}
 
 	String leerCodigo() {
@@ -176,7 +189,6 @@ public class FrmRegProd extends JDialog {
 	}
 
 	int leerTipo() {
-
 		if (cboTipo.getSelectedIndex() == 0)
 			return -1;
 
@@ -184,7 +196,6 @@ public class FrmRegProd extends JDialog {
 	}
 
 	int leerCantidad() {
-
 		if (txtCantidad.getText().trim().isEmpty())
 			return -1;
 
@@ -192,7 +203,6 @@ public class FrmRegProd extends JDialog {
 	}
 
 	double leerPrecio() {
-
 		if (txtPrecio.getText().trim().isEmpty())
 			return -1;
 		else {
@@ -205,11 +215,9 @@ public class FrmRegProd extends JDialog {
 				return -1;
 			}
 		}
-
 	}
 
 	String leerProducto() {
-
 		if (txtProducto.getText().trim().isEmpty())
 			return null;
 
