@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -27,6 +28,7 @@ public class FrmRegProd extends JDialog {
 	private JTextField txtCantidad;
 	private JTextField txtPrecio;
 	private JComboBox<String> cboTipo;
+	private DefaultTableModel model;
 
 	public static void main(String[] args) {
 
@@ -133,7 +135,14 @@ public class FrmRegProd extends JDialog {
 		scrollPane.setBounds(25, 166, 436, 136);
 		panel.add(scrollPane);
 
-		tblSalida = new JTable();
+		tblSalida = new JTable();		
+		model = new DefaultTableModel();
+		tblSalida.setModel(model);
+		model.addColumn("Código");
+		model.addColumn("Nombre");
+		model.addColumn("Categoría");
+		model.addColumn("Stock");
+		model.addColumn("Precio");
 		scrollPane.setViewportView(tblSalida);
 
 		btnNuevo.addActionListener(new ActionListener() {
