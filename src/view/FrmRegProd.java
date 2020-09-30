@@ -202,7 +202,7 @@ public class FrmRegProd extends JDialog {
 		
 	}
 
-	void ingresar() {
+	private void ingresar() {
 		String codigo, producto;
 		int cantidad, tipo;
 		double precio;
@@ -219,28 +219,28 @@ public class FrmRegProd extends JDialog {
 			insertarNuevaFila(codigo, producto, tipo, cantidad, precio);
 	}
 
-	String leerCodigo() {
+	private String leerCodigo() {
 		if (txtCodigo.getText().trim().isEmpty())
 			return null;
 
 		return txtCodigo.getText().trim();
 	}
 
-	int leerTipo() {
+	private int leerTipo() {
 		if (cboTipo.getSelectedIndex() == 0)
 			return -1;
 
 		return cboTipo.getSelectedIndex();
 	}
 
-	int leerCantidad() {
+	private int leerCantidad() {
 		if (txtCantidad.getText().trim().isEmpty())
 			return -1;
 
 		return Integer.parseInt(txtCantidad.getText().trim());
 	}
 
-	double leerPrecio() {
+	private double leerPrecio() {
 		if (txtPrecio.getText().trim().isEmpty())
 			return -1;
 		else {
@@ -255,19 +255,19 @@ public class FrmRegProd extends JDialog {
 		}
 	}
 
-	String leerProducto() {
+	private String leerProducto() {
 		if (txtProducto.getText().trim().isEmpty())
 			return null;
 
 		return txtProducto.getText().trim();
 	}
 	
-	void insertarNuevaFila(String codigo, String producto, int tipo, int cantidad, double precio) {
+	private void insertarNuevaFila(String codigo, String producto, int tipo, int cantidad, double precio) {
 		Object datos[] = {codigo, producto, tipo, cantidad, precio};
 		model.addRow(datos);
 	}
 	
-	void getValueRowAndSet(JTextField txt,int fila ,int pos) {
+	private void getValueRowAndSet(JTextField txt,int fila ,int pos) {
 		txt.setText(tblSalida.getValueAt(fila, pos).toString());
 	}
 	
