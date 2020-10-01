@@ -58,7 +58,7 @@ public class FrmPrincipal extends JFrame {
 		JMenu mnMantenimiento = new JMenu("Mantenimiento");
 		menuBar.add(mnMantenimiento);
 
-		JMenuItem mntmClientes = new JMenuItem("Clientes");
+		JMenuItem mntmClientes = new JMenuItem("Clientes");		
 		mnMantenimiento.add(mntmClientes);
 
 		JMenuItem mntmProductos = new JMenuItem("Productos");		
@@ -92,6 +92,13 @@ public class FrmPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				FrmReptVtas reptVtas = new FrmReptVtas();
 				reptVtas.setVisible(true);
+			}
+		});
+		
+		mntmClientes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FrmRegCli regCli = new FrmRegCli();
+				regCli.setVisible(true);
 			}
 		});
 		
