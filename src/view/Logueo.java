@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import view.FrmPrincipal;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -13,6 +16,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Logueo extends JFrame {
 
@@ -83,12 +88,44 @@ public class Logueo extends JFrame {
 		btnSalir.setBounds(170, 149, 123, 34);
 		panel.add(btnSalir);
 		
+		setLocationRelativeTo(null);
+		
+		txtUsuario.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				btnAceptar.setEnabled(txtUsuario.getText().length() >= 2 && txtPassword.getPassword().length >= 8);
+			}
+		});
 
 		txtPassword.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				btnAceptar.setEnabled(txtUsuario.getText().length() >= 2 && txtPassword.getPassword().length >= 8);;
+				btnAceptar.setEnabled(txtUsuario.getText().length() >= 2 && txtPassword.getPassword().length >= 8);
+			}
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char letra = e.getKeyChar();
+				if (letra == 32) {
+					e.consume();
+				}
 			}
 		});
+		
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				abrirVentanaPrincipal();
+			}
+		});
+		
 	}
+	
+	private void abrirVentanaPrincipal() {
+		FrmPrincipal principal = new FrmPrincipal();
+		principal.setLocationRelativeTo(null);
+		principal.setExtendedState(MAXIMIZED_BOTH);
+		principal.setVisible(true);
+		dispose();
+	}
+	
 }
