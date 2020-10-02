@@ -9,16 +9,32 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.JProgressBar;
+import javax.swing.event.ChangeListener;
+
+import hilos.HiloCargaLoader;
+import view.FrmPrincipal;
+
+import javax.swing.event.ChangeEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class FrmPreLoader extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JProgressBar prbCarga;
-	private JLabel lblMensaje;
+	public static JProgressBar prbCarga;
+	public static JLabel lblMensaje;
 
 	public static void main(String[] args) {
+		
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -32,6 +48,7 @@ public class FrmPreLoader extends JFrame {
 	}
 
 	public FrmPreLoader() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 419, 91);
 		contentPane = new JPanel();
@@ -46,9 +63,32 @@ public class FrmPreLoader extends JFrame {
 		lblMensaje.setBounds(50, 2, 303, 14);
 		contentPane.add(lblMensaje);
 		
-		prbCarga = new JProgressBar();
+		prbCarga = new JProgressBar();		
 		prbCarga.setStringPainted(true);
 		prbCarga.setBounds(0, 27, 403, 19);
 		contentPane.add(prbCarga);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				iniciarBarra();
+			}
+		});
+		
+		prbCarga.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {				
+				if (prbCarga.getValue() == 100) {
+					FrmPrincipal v = new FrmPrincipal();
+					v.setVisible(true);
+					dispose();
+				}
+			}
+		});
+		
+	}
+	
+	private void iniciarBarra() {
+		HiloCargaLoader hilo = new HiloCargaLoader();
+		hilo.start();
 	}
 }
