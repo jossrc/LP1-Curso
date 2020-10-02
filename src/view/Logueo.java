@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import hilos.HiloLogueo;
-import view.FrmPrincipal;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -143,10 +142,8 @@ public class Logueo extends JFrame {
 	}
 	
 	private void abrirVentanaPrincipal() {
-		FrmPrincipal principal = new FrmPrincipal();
-		principal.setLocationRelativeTo(null);
-		principal.setExtendedState(MAXIMIZED_BOTH);
-		principal.setVisible(true);
+		FrmPreLoader loader = new FrmPreLoader();
+		loader.setVisible(true);
 		dispose();
 	}
 	

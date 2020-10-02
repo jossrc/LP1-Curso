@@ -68,6 +68,8 @@ public class FrmPreLoader extends JFrame {
 		prbCarga.setBounds(0, 27, 403, 19);
 		contentPane.add(prbCarga);
 		
+		setLocationRelativeTo(null);
+		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {
@@ -76,10 +78,12 @@ public class FrmPreLoader extends JFrame {
 		});
 		
 		prbCarga.addChangeListener(new ChangeListener() {
-			public void stateChanged(ChangeEvent arg0) {				
+			public void stateChanged(ChangeEvent arg0) {	
 				if (prbCarga.getValue() == 100) {
-					FrmPrincipal v = new FrmPrincipal();
-					v.setVisible(true);
+					FrmPrincipal principal = new FrmPrincipal();
+					principal.setLocationRelativeTo(null);
+					principal.setExtendedState(MAXIMIZED_BOTH);
+					principal.setVisible(true);
 					dispose();
 				}
 			}
