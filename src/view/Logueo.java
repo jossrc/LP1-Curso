@@ -148,7 +148,7 @@ public class Logueo extends JFrame {
 	}
 	
 	private void iniciarTiempo() {
-		HiloLogueo hilo = new HiloLogueo();
+		HiloLogueo hilo = new HiloLogueo(this);
 		hilo.start();
 	}
 }

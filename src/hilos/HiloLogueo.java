@@ -3,9 +3,18 @@ package hilos;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.JFrame;
+
 import view.Logueo;
 
 public class HiloLogueo extends Thread {
+	
+	private JFrame login;
+	
+	public HiloLogueo(JFrame login) {
+		this.login = login;
+	}
+	
 	public void run() {
 		for (int i = 10; i >= 0; i--) {
 			
@@ -14,11 +23,7 @@ public class HiloLogueo extends Thread {
 				Logueo.lblTiempo.setForeground(Color.RED);
 			}			
 			
-			Logueo.lblTiempo.setText(i + "s");
-			
-			if (i == 0) {
-				System.exit(0);
-			}
+			Logueo.lblTiempo.setText(i + "s");			
 
 			try {
 				Thread.sleep(1000);
@@ -28,5 +33,6 @@ public class HiloLogueo extends Thread {
 			}
 
 		}
+		login.dispose();
 	}
 }
