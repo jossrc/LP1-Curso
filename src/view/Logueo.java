@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import hilos.HiloLogueo;
 import view.FrmPrincipal;
 
 import javax.swing.JLabel;
@@ -18,6 +19,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Logueo extends JFrame {
 
@@ -48,6 +51,7 @@ public class Logueo extends JFrame {
 	}
 
 	public Logueo() {
+		
 		setTitle("CiberFarma - Acceso al Sistema");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 363, 258);
@@ -90,14 +94,23 @@ public class Logueo extends JFrame {
 		panel.add(btnSalir);
 		
 		JLabel lblMensaje = new JLabel("Esta ventana se cerrar\u00E1 en:");
+		lblMensaje.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblMensaje.setBounds(69, 194, 135, 14);
 		panel.add(lblMensaje);
 		
 		lblTiempo = new JLabel("10s");
+		lblTiempo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblTiempo.setBounds(214, 194, 17, 14);
 		panel.add(lblTiempo);
 		
 		setLocationRelativeTo(null);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				iniciarTiempo();
+			}
+		});
 		
 		txtUsuario.addKeyListener(new KeyAdapter() {
 			@Override
@@ -135,5 +148,10 @@ public class Logueo extends JFrame {
 		principal.setExtendedState(MAXIMIZED_BOTH);
 		principal.setVisible(true);
 		dispose();
+	}
+	
+	private void iniciarTiempo() {
+		HiloLogueo hilo = new HiloLogueo();
+		hilo.start();
 	}
 }
