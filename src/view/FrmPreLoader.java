@@ -82,7 +82,7 @@ public class FrmPreLoader extends JFrame {
 				if (prbCarga.getValue() == 100) {
 					FrmPrincipal principal = new FrmPrincipal();
 					principal.setLocationRelativeTo(null);
-					principal.setExtendedState(MAXIMIZED_BOTH);
+					//principal.setExtendedState(MAXIMIZED_BOTH);
 					principal.setVisible(true);
 					dispose();
 				}

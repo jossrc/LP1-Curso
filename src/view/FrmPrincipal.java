@@ -80,6 +80,12 @@ public class FrmPrincipal extends JFrame {
 		JMenuItem mntmVentas = new JMenuItem("Ventas");		
 		mnReportes.add(mntmVentas);
 		
+		JMenu mnJuegos = new JMenu("Juegos");
+		menuBar.add(mnJuegos);
+		
+		JMenuItem mntmCaballitos = new JMenuItem("Caballitos");
+		mnJuegos.add(mntmCaballitos);
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -136,5 +142,4 @@ public class FrmPrincipal extends JFrame {
 		HiloReloj hilo = new HiloReloj();
 		hilo.start();
 	}
-	
 }
