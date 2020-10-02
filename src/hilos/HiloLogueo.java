@@ -14,8 +14,12 @@ public class HiloLogueo extends Thread {
 				Logueo.lblTiempo.setForeground(Color.RED);
 			}			
 			
-			Logueo.lblTiempo.setText(i + "s");			
+			Logueo.lblTiempo.setText(i + "s");
 			
+			if (i == 0) {
+				System.exit(0);
+			}
+
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

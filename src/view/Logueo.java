@@ -98,7 +98,7 @@ public class Logueo extends JFrame {
 		lblMensaje.setBounds(69, 194, 135, 14);
 		panel.add(lblMensaje);
 		
-		lblTiempo = new JLabel("10s");
+		lblTiempo = new JLabel("10s");		
 		lblTiempo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblTiempo.setBounds(214, 194, 17, 14);
 		panel.add(lblTiempo);
