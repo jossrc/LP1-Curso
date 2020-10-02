@@ -15,6 +15,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
 
 public class FrmPrincipal extends JFrame {
 
@@ -43,7 +46,7 @@ public class FrmPrincipal extends JFrame {
 
 	public FrmPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 575, 383);
+		setBounds(100, 100, 700, 484);
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -74,6 +77,17 @@ public class FrmPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 684, 424);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblReloj = new JLabel("00:00:00");
+		lblReloj.setForeground(new Color(255, 51, 0));
+		lblReloj.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 24));
+		lblReloj.setBounds(548, 11, 122, 30);
+		panel.add(lblReloj);
 		
 		mntmSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
