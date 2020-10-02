@@ -6,6 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.SwingConstants;
+import javax.swing.JProgressBar;
 
 public class FrmPreLoader extends JFrame {
 
@@ -27,11 +32,22 @@ public class FrmPreLoader extends JFrame {
 
 	public FrmPreLoader() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 419, 91);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblMensaje = new JLabel("El sistema est\u00E1 cargando, espere unos segundos");
+		lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMensaje.setForeground(Color.BLUE);
+		lblMensaje.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblMensaje.setBounds(50, 2, 303, 14);
+		contentPane.add(lblMensaje);
+		
+		JProgressBar prbCarga = new JProgressBar();
+		prbCarga.setStringPainted(true);
+		prbCarga.setBounds(0, 27, 403, 19);
+		contentPane.add(prbCarga);
 	}
-
 }
