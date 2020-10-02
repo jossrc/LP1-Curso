@@ -83,7 +83,7 @@ public class FrmPrincipal extends JFrame {
 		JMenu mnJuegos = new JMenu("Juegos");
 		menuBar.add(mnJuegos);
 		
-		JMenuItem mntmCaballitos = new JMenuItem("Caballitos");
+		JMenuItem mntmCaballitos = new JMenuItem("Caballitos");		
 		mnJuegos.add(mntmCaballitos);
 		
 		contentPane = new JPanel();
@@ -133,6 +133,15 @@ public class FrmPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				FrmRegCli regCli = new FrmRegCli();
 				regCli.setVisible(true);
+			}
+		});
+		
+		mntmCaballitos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Pista juego = new Pista();
+				juego.setVisible(true);
+				juego.setLocationRelativeTo(null);
+				dispose();
 			}
 		});
 		
