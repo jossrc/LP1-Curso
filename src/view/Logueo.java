@@ -25,6 +25,7 @@ public class Logueo extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JPasswordField txtPassword;
+	public static JLabel lblTiempo;
 
 	public static void main(String[] args) {
 		
@@ -49,14 +50,14 @@ public class Logueo extends JFrame {
 	public Logueo() {
 		setTitle("CiberFarma - Acceso al Sistema");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 363, 233);
+		setBounds(100, 100, 363, 258);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 347, 194);
+		panel.setBounds(0, 0, 347, 219);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -87,6 +88,14 @@ public class Logueo extends JFrame {
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.setBounds(170, 149, 123, 34);
 		panel.add(btnSalir);
+		
+		JLabel lblMensaje = new JLabel("Esta ventana se cerrar\u00E1 en:");
+		lblMensaje.setBounds(69, 194, 135, 14);
+		panel.add(lblMensaje);
+		
+		lblTiempo = new JLabel("10s");
+		lblTiempo.setBounds(214, 194, 17, 14);
+		panel.add(lblTiempo);
 		
 		setLocationRelativeTo(null);
 		
@@ -127,5 +136,4 @@ public class Logueo extends JFrame {
 		principal.setVisible(true);
 		dispose();
 	}
-	
 }
