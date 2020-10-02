@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import hilos.HiloReloj;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -18,11 +21,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class FrmPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	public static JLabel lblReloj;
 
 	public static void main(String[] args) {
 		
@@ -45,6 +51,7 @@ public class FrmPrincipal extends JFrame {
 	}
 
 	public FrmPrincipal() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 484);
 
@@ -83,11 +90,18 @@ public class FrmPrincipal extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblReloj = new JLabel("00:00:00");
+		lblReloj = new JLabel("00:00:00");
 		lblReloj.setForeground(new Color(255, 51, 0));
 		lblReloj.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 24));
 		lblReloj.setBounds(548, 11, 122, 30);
 		panel.add(lblReloj);
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent arg0) {
+				iniciarReloj();
+			}
+		});
 		
 		mntmSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -117,4 +131,10 @@ public class FrmPrincipal extends JFrame {
 		});
 		
 	}
+	
+	private void iniciarReloj() {
+		HiloReloj hilo = new HiloReloj();
+		hilo.start();
+	}
+	
 }
