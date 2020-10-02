@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,6 +15,8 @@ public class FrmPreLoader extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JProgressBar prbCarga;
+	private JLabel lblMensaje;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -38,14 +39,14 @@ public class FrmPreLoader extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblMensaje = new JLabel("El sistema est\u00E1 cargando, espere unos segundos");
+		lblMensaje = new JLabel("El sistema est\u00E1 cargando, espere unos segundos");
 		lblMensaje.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMensaje.setForeground(Color.BLUE);
 		lblMensaje.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblMensaje.setBounds(50, 2, 303, 14);
 		contentPane.add(lblMensaje);
 		
-		JProgressBar prbCarga = new JProgressBar();
+		prbCarga = new JProgressBar();
 		prbCarga.setStringPainted(true);
 		prbCarga.setBounds(0, 27, 403, 19);
 		contentPane.add(prbCarga);
