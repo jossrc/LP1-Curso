@@ -23,6 +23,8 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
 public class FrmPrincipal extends JFrame {
 
@@ -51,6 +53,8 @@ public class FrmPrincipal extends JFrame {
 	}
 
 	public FrmPrincipal() {
+		setTitle("CiberFarma");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmPrincipal.class.getResource("/img/main-icon.png")));
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 700, 484);
@@ -59,31 +63,40 @@ public class FrmPrincipal extends JFrame {
 		setJMenuBar(menuBar);
 
 		JMenu mnSistema = new JMenu("Sistema");
+		mnSistema.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/system-icon.png")));
 		menuBar.add(mnSistema);
 
 		JMenuItem mntmSalir = new JMenuItem("Salir");		
+		mntmSalir.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/out-icon.png")));
 		mntmSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, InputEvent.ALT_MASK));
 		mnSistema.add(mntmSalir);
 
 		JMenu mnMantenimiento = new JMenu("Mantenimiento");
+		mnMantenimiento.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/tool-icon.png")));
 		menuBar.add(mnMantenimiento);
 
 		JMenuItem mntmClientes = new JMenuItem("Clientes");		
+		mntmClientes.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/client-icon.png")));
 		mnMantenimiento.add(mntmClientes);
 
 		JMenuItem mntmProductos = new JMenuItem("Productos");		
+		mntmProductos.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/product-icon.png")));
 		mnMantenimiento.add(mntmProductos);
 
 		JMenu mnReportes = new JMenu("Reportes");
+		mnReportes.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/report-icon.png")));
 		menuBar.add(mnReportes);
 
 		JMenuItem mntmVentas = new JMenuItem("Ventas");		
+		mntmVentas.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/sale-icon.png")));
 		mnReportes.add(mntmVentas);
 		
 		JMenu mnJuegos = new JMenu("Juegos");
+		mnJuegos.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/play-icon.png")));
 		menuBar.add(mnJuegos);
 		
 		JMenuItem mntmCaballitos = new JMenuItem("Caballitos");		
+		mntmCaballitos.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/horse-icon.png")));
 		mnJuegos.add(mntmCaballitos);
 		
 		contentPane = new JPanel();
