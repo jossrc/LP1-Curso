@@ -1,11 +1,10 @@
-package semana04;
+package actividades;
 
 import javax.swing.JOptionPane;
 
-public class EjemploEncriptado {
+public class Encriptado {
 
-	public static void main(String[] args) {		
-		
+	public static void main(String[] args) {
 		String clave = JOptionPane.showInputDialog("Ingrese su contrase\u00f1a");		
 		String encriptado = encriptar(clave);
 		
@@ -18,7 +17,7 @@ public class EjemploEncriptado {
 		System.out.println("\n>>> CiberDesEncriptador <<<");
 		System.out.println("Clave encriptado    : " + encriptado);
 		System.out.println("Clave desencriptada : " + desencriptado);
-	
+
 	}
 	
 	static String encriptar(String clave) {
@@ -44,6 +43,13 @@ public class EjemploEncriptado {
 				break;
 			}
 		}
+		
+		char primero = cifrado.charAt(0);
+		char ultimo = cifrado.charAt(cifrado.length() - 1);
+		
+		cifrado.setCharAt(0, ultimo);
+		cifrado.setCharAt(cifrado.length() - 1, primero);
+		
 		
 		return cifrado.reverse().toString();
 	}
@@ -71,6 +77,12 @@ public class EjemploEncriptado {
 				break;
 			}
 		}
+		
+		char primero = desencriptado.charAt(0);
+		char ultimo = desencriptado.charAt(desencriptado.length() - 1);
+		
+		desencriptado.setCharAt(0, ultimo);
+		desencriptado.setCharAt(desencriptado.length() - 1, primero);
 		
 		return desencriptado.reverse().toString();
 	}
