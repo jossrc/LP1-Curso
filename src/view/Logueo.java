@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.ImageIcon;
 
 public class Logueo extends JFrame {
 
@@ -101,6 +102,11 @@ public class Logueo extends JFrame {
 		lblTiempo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblTiempo.setBounds(214, 194, 17, 14);
 		panel.add(lblTiempo);
+		
+		JLabel lblImagen = new JLabel("");
+		lblImagen.setIcon(new ImageIcon(Logueo.class.getResource("/img/avatar.png")));
+		lblImagen.setBounds(0, -21, 117, 214);
+		panel.add(lblImagen);
 		
 		setLocationRelativeTo(null);
 		
