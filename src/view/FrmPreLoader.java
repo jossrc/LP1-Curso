@@ -48,6 +48,7 @@ public class FrmPreLoader extends JFrame {
 	}
 
 	public FrmPreLoader() {
+		setTitle("Loading...");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 419, 91);

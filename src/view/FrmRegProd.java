@@ -56,6 +56,7 @@ public class FrmRegProd extends JDialog {
 	}
 
 	public FrmRegProd() {
+		setTitle("Productos");
 		setBounds(100, 100, 506, 388);
 		getContentPane().setLayout(null);
 

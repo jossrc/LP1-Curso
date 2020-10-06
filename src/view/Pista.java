@@ -56,6 +56,7 @@ public class Pista extends JFrame {
 	}
 
 	public Pista() {
+		setTitle("Carrera de Caballitos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 635, 355);
 		contentPane = new JPanel();
