@@ -115,6 +115,8 @@ public class FrmPrincipal extends JFrame {
 		lblReloj.setBounds(548, 11, 122, 30);
 		panel.add(lblReloj);
 		
+		setLocationRelativeTo(null);
+		
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent arg0) {

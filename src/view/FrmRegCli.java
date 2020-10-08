@@ -46,7 +46,8 @@ public class FrmRegCli extends JDialog {
 		});
 	}
 
-	public FrmRegCli() {
+	public FrmRegCli() {		
+		
 		setModal(true);
 		setTitle("Clientes");
 		setBounds(100, 100, 506, 327);
@@ -120,7 +121,7 @@ public class FrmRegCli extends JDialog {
 		txtCorreo.setText("");
 		txtCorreo.setColumns(10);
 		txtCorreo.setBounds(101, 187, 157, 20);
-		panel.add(txtCorreo);
+		panel.add(txtCorreo);		
 		
 		JButton btnNuevo = new JButton("Nuevo");		
 		btnNuevo.setBounds(331, 38, 116, 34);
