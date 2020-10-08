@@ -44,6 +44,7 @@ public class FrmReptVtas extends JDialog {
 	}
 
 	public FrmReptVtas() {
+		setModal(true);
 		setTitle("Reporte de Ventas");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);

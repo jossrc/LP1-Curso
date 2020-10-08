@@ -47,6 +47,7 @@ public class FrmRegCli extends JDialog {
 	}
 
 	public FrmRegCli() {
+		setModal(true);
 		setTitle("Clientes");
 		setBounds(100, 100, 506, 327);
 		getContentPane().setLayout(null);
