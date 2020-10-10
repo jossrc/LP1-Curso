@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -114,6 +115,10 @@ public class FrmPrincipal extends JFrame {
 		lblReloj.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC, 24));
 		lblReloj.setBounds(548, 11, 122, 30);
 		panel.add(lblReloj);
+		
+		AudioClip sonido;
+		sonido = java.applet.Applet.newAudioClip(getClass().getResource("/audio/Bienvenido.wav"));
+		sonido.play();
 		
 		setLocationRelativeTo(null);
 		
