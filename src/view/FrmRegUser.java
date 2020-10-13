@@ -29,6 +29,7 @@ public class FrmRegUser extends JDialog {
 	private JDateChooser txtFecha;
 	private JButton btnRegistrar;
 	private JButton btnLimpiar;
+	private JTextField txtCodigo;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -53,7 +54,7 @@ public class FrmRegUser extends JDialog {
 
 	public FrmRegUser() {
 		setModal(true);
-		setTitle("Registro de Usuarios");
+		setTitle("Mantenimiento de Usuarios");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(null);
 
@@ -63,46 +64,46 @@ public class FrmRegUser extends JDialog {
 		panel.setLayout(null);
 
 		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(21, 14, 37, 14);
+		lblNombre.setBounds(23, 48, 37, 14);
 		panel.add(lblNombre);
 
 		JLabel lblApellido = new JLabel("Apellido");
-		lblApellido.setBounds(21, 42, 37, 14);
+		lblApellido.setBounds(23, 76, 37, 14);
 		panel.add(lblApellido);
 
 		JLabel lblNewLabel = new JLabel("Usuario");
-		lblNewLabel.setBounds(21, 70, 36, 14);
+		lblNewLabel.setBounds(23, 104, 36, 14);
 		panel.add(lblNewLabel);
 
 		JLabel lblClave = new JLabel("Clave");
-		lblClave.setBounds(21, 99, 27, 14);
+		lblClave.setBounds(23, 133, 27, 14);
 		panel.add(lblClave);
 
 		JLabel lblFecha = new JLabel("Fecha");
-		lblFecha.setBounds(21, 124, 29, 14);
+		lblFecha.setBounds(23, 158, 29, 14);
 		panel.add(lblFecha);
 
 		txtNombre = new JTextField();
-		txtNombre.setBounds(77, 11, 136, 20);
+		txtNombre.setBounds(79, 45, 136, 20);
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
 
 		txtApellido = new JTextField();
-		txtApellido.setBounds(77, 39, 136, 20);
+		txtApellido.setBounds(79, 73, 136, 20);
 		panel.add(txtApellido);
 		txtApellido.setColumns(10);
 
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(77, 67, 136, 20);
+		txtUsuario.setBounds(79, 101, 136, 20);
 		panel.add(txtUsuario);
 		txtUsuario.setColumns(10);
 
 		txtClave = new JPasswordField();
-		txtClave.setBounds(77, 95, 136, 20);
+		txtClave.setBounds(79, 129, 136, 20);
 		panel.add(txtClave);
 
 		txtFecha = new JDateChooser();
-		txtFecha.setBounds(76, 124, 137, 20);
+		txtFecha.setBounds(78, 158, 137, 20);
 		panel.add(txtFecha);
 
 		btnRegistrar = new JButton("Registrar");
@@ -110,8 +111,25 @@ public class FrmRegUser extends JDialog {
 		panel.add(btnRegistrar);
 
 		btnLimpiar = new JButton("Limpiar");
-		btnLimpiar.setBounds(312, 66, 97, 33);
+		btnLimpiar.setBounds(312, 188, 97, 33);
 		panel.add(btnLimpiar);
+		
+		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar.setBounds(312, 66, 97, 33);
+		panel.add(btnActualizar);
+		
+		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setBounds(312, 132, 97, 33);
+		panel.add(btnEliminar);
+		
+		JLabel lblCodigo = new JLabel("C\u00F3digo");
+		lblCodigo.setBounds(23, 19, 33, 14);
+		panel.add(lblCodigo);
+		
+		txtCodigo = new JTextField();
+		txtCodigo.setBounds(79, 16, 136, 20);
+		panel.add(txtCodigo);
+		txtCodigo.setColumns(10);
 
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
