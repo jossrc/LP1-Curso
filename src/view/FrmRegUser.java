@@ -129,7 +129,7 @@ public class FrmRegUser extends JDialog {
 
 		// salidas
 		if (ok == 0) {
-			JOptionPane.showMessageDialog(this, "Eror al registrar");
+			JOptionPane.showMessageDialog(this, "Error al registrar");
 		} else {
 			JOptionPane.showMessageDialog(this, "Registro OK");
 		}
