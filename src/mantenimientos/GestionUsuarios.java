@@ -50,18 +50,18 @@ public class GestionUsuarios implements UsuarioInterface {
 	@Override
 	public int eliminar(int codigo) {
 		int rs = 0;
-		
+
 		Connection con = null;
 		PreparedStatement pst = null;
 
 		try {
-			
-			con = MySQLConexion8.getConexion();			
-			String sql = "delete from tb_usuarios where codigo = ?";			
+
+			con = MySQLConexion8.getConexion();
+			String sql = "delete from tb_usuarios where codigo = ?";
 			pst = con.prepareStatement(sql);
-				
+
 			pst.setInt(1, codigo);
-			
+
 			rs = pst.executeUpdate();
 
 		} catch (Exception e) {
@@ -73,30 +73,27 @@ public class GestionUsuarios implements UsuarioInterface {
 				System.out.println("Error al cerrar : " + e.getMessage());
 			}
 		}
-		
+
 		return rs;
 	}
 
 	@Override
 	public int actualizar(Usuario u) {
 		int rs = 0; // Valor x default en caso de error
-		
-		Connection con = null; // Sirve para la conex.
-		PreparedStatement pst = null; // Para las sentencias
+
+		Connection con = null;
+		PreparedStatement pst = null;
 
 		try {
-			// 01. Obtener la conexion
 			con = MySQLConexion8.getConexion();
-			// 02. Crear la cadena que haga una sentencia a utilizar
 			String sql = "update tb_usuarios set nombre   = ?, apellido = ?, fnacim = ? where codigo = ?";
-			// 03. Se prepara la sentencia a ejecutar
 			pst = con.prepareStatement(sql);
 			// Como la cadena tiene 4 ?, se setea
 			pst.setString(1, u.getNombre());
 			pst.setString(2, u.getApellido());
 			pst.setString(3, u.getFnacim());
 			pst.setInt(4, u.getCodigo());
-			// 04. Ejecutamos la sentencia y guardamos el resultado
+
 			rs = pst.executeUpdate();
 
 		} catch (Exception e) {
@@ -108,7 +105,7 @@ public class GestionUsuarios implements UsuarioInterface {
 				System.out.println("Error al cerrar : " + e.getMessage());
 			}
 		}
-		
+
 		return rs;
 	}
 
