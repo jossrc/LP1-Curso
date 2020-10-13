@@ -18,6 +18,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class FrmRegUser extends JDialog {
 
@@ -130,6 +132,15 @@ public class FrmRegUser extends JDialog {
 		txtCodigo.setBounds(79, 16, 136, 20);
 		panel.add(txtCodigo);
 		txtCodigo.setColumns(10);
+		
+		JLabel lblTipo = new JLabel("Tipo");
+		lblTipo.setBounds(23, 192, 29, 14);
+		panel.add(lblTipo);
+		
+		JComboBox cboTipo = new JComboBox();
+		cboTipo.setModel(new DefaultComboBoxModel(new String[] {"Seleccione", "Administrador", "Cliente", "Cajero"}));
+		cboTipo.setBounds(79, 189, 120, 20);
+		panel.add(cboTipo);
 
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
