@@ -49,8 +49,32 @@ public class GestionUsuarios implements UsuarioInterface {
 
 	@Override
 	public int eliminar(int codigo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int rs = 0;
+		
+		Connection con = null;
+		PreparedStatement pst = null;
+
+		try {
+			
+			con = MySQLConexion8.getConexion();			
+			String sql = "delete from tb_usuarios where codigo = ?";			
+			pst = con.prepareStatement(sql);
+				
+			pst.setInt(1, codigo);
+			
+			rs = pst.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("Error en Eliminar : " + e.getMessage());
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar : " + e.getMessage());
+			}
+		}
+		
+		return rs;
 	}
 
 	@Override
