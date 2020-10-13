@@ -33,6 +33,8 @@ public class FrmRegUser extends JDialog {
 	private JButton btnLimpiar;
 	private JTextField txtCodigo;
 	private JButton btnEliminar;
+	private JButton btnActualizar;
+	private JComboBox cboTipo;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -117,7 +119,7 @@ public class FrmRegUser extends JDialog {
 		btnLimpiar.setBounds(312, 188, 97, 33);
 		panel.add(btnLimpiar);
 		
-		JButton btnActualizar = new JButton("Actualizar");
+		btnActualizar = new JButton("Actualizar");		
 		btnActualizar.setBounds(312, 66, 97, 33);
 		panel.add(btnActualizar);
 		
@@ -138,7 +140,7 @@ public class FrmRegUser extends JDialog {
 		lblTipo.setBounds(23, 192, 29, 14);
 		panel.add(lblTipo);
 		
-		JComboBox cboTipo = new JComboBox();
+		cboTipo = new JComboBox();
 		cboTipo.setModel(new DefaultComboBoxModel(new String[] {"Seleccione", "Administrador", "Cliente", "Cajero"}));
 		cboTipo.setBounds(79, 189, 120, 20);
 		panel.add(cboTipo);
@@ -154,9 +156,48 @@ public class FrmRegUser extends JDialog {
 				eliminarUsuario();
 			}
 		});
+		
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actualizarUsuario();
+			}
+		});
 
 	}
 	
+	protected void actualizarUsuario() {
+		int codigo, tipo;
+		String nombre, apellido, usuario,clave, fnacim;
+		codigo = leerCodigo();
+		nombre = leerNombre();		
+		apellido = leerApellido();
+		clave = leerClave();
+		usuario = leerUsuario();
+		fnacim = leerFecha();
+		tipo = leerTipo();
+		
+		Usuario u = new Usuario(codigo, nombre, apellido, usuario, clave, fnacim, tipo, 0);
+		
+		int rs = new GestionUsuarios().actualizar(u);
+		
+		if (rs == 0) {
+			JOptionPane.showMessageDialog(this, "Error al actualizar");
+		} else {
+			JOptionPane.showMessageDialog(this, "Usuario actualizado");
+		}
+		
+	}
+
+	private int leerTipo() {
+		
+		if (cboTipo.getSelectedIndex() == -1 || cboTipo.getSelectedIndex() == 0) {
+			JOptionPane.showMessageDialog(this, "Seleccion un tipo", "Aviso", 2);
+			return -1;
+		}
+		
+		return cboTipo.getSelectedIndex();
+	}
+
 	private void eliminarUsuario() {
 		int codigo;
 		codigo = leerCodigo();
