@@ -55,8 +55,37 @@ public class GestionUsuarios implements UsuarioInterface {
 
 	@Override
 	public int actualizar(Usuario u) {
-		// TODO Auto-generated method stub
-		return 0;
+		int rs = 0; // Valor x default en caso de error
+		
+		Connection con = null; // Sirve para la conex.
+		PreparedStatement pst = null; // Para las sentencias
+
+		try {
+			// 01. Obtener la conexion
+			con = MySQLConexion8.getConexion();
+			// 02. Crear la cadena que haga una sentencia a utilizar
+			String sql = "update tb_usuarios set nombre   = ?, apellido = ?, fnacim = ? where codigo = ?";
+			// 03. Se prepara la sentencia a ejecutar
+			pst = con.prepareStatement(sql);
+			// Como la cadena tiene 4 ?, se setea
+			pst.setString(1, u.getNombre());
+			pst.setString(2, u.getApellido());
+			pst.setString(3, u.getFnacim());
+			pst.setInt(4, u.getCodigo());
+			// 04. Ejecutamos la sentencia y guardamos el resultado
+			rs = pst.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("Error en actualizar : " + e.getMessage());
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar : " + e.getMessage());
+			}
+		}
+		
+		return rs;
 	}
 
 	@Override
