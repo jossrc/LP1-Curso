@@ -32,6 +32,7 @@ public class FrmRegUser extends JDialog {
 	private JButton btnRegistrar;
 	private JButton btnLimpiar;
 	private JTextField txtCodigo;
+	private JButton btnEliminar;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -120,7 +121,7 @@ public class FrmRegUser extends JDialog {
 		btnActualizar.setBounds(312, 66, 97, 33);
 		panel.add(btnActualizar);
 		
-		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar = new JButton("Eliminar");		
 		btnEliminar.setBounds(312, 132, 97, 33);
 		panel.add(btnEliminar);
 		
@@ -147,7 +148,40 @@ public class FrmRegUser extends JDialog {
 				leerTodosYRegistrar();
 			}
 		});
+		
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				eliminarUsuario();
+			}
+		});
 
+	}
+	
+	private void eliminarUsuario() {
+		int codigo;
+		codigo = leerCodigo();
+		int rs = new GestionUsuarios().eliminar(codigo);
+		if (rs == 0) {
+			JOptionPane.showMessageDialog(this, "No se eliminó, código no existe");
+		} else {
+			JOptionPane.showMessageDialog(this, "Usuario eliminado");
+		}
+	}
+
+	private int leerCodigo() {
+		
+		if (txtCodigo.getText().trim().isEmpty()) {
+			JOptionPane.showMessageDialog(this, "El campo código no debe estar vacío", "Aviso", 2);
+			return -1;
+		}
+
+		if (!txtCodigo.getText().trim().matches("\\d*")) {
+			JOptionPane.showMessageDialog(this, "El código solo acepta números", "Aviso", 2);
+			return -1;
+		}
+		
+		
+		return Integer.parseInt(txtCodigo.getText().trim());
 	}
 
 	private void registrarDatosBD(String nombre, String apellido, String usuario, String clave, String fnacim) {
@@ -219,13 +253,13 @@ public class FrmRegUser extends JDialog {
 
 	private String leerNombre() {
 
-		if (txtNombre.getText().trim().length() == 0) {
-			JOptionPane.showMessageDialog(null, "El campo nombre está vacío", "Aviso", 2);
+		if (txtNombre.getText().trim().isEmpty()) {
+			JOptionPane.showMessageDialog(this, "El campo nombre está vacío", "Aviso", 2);
 			return null;
 		}
 
 		if (!txtNombre.getText().trim().matches("[a-zA-záéíóúñÑÁÉÍÓÚ]{2,15}")) {
-			JOptionPane.showMessageDialog(null, "Ingrese un nombre válido", "Aviso", 2);
+			JOptionPane.showMessageDialog(this, "Ingrese un nombre válido", "Aviso", 2);
 			return null;
 		}
 
@@ -234,12 +268,12 @@ public class FrmRegUser extends JDialog {
 
 	private String leerApellido() {
 		if (txtApellido.getText().trim().length() == 0) {
-			JOptionPane.showMessageDialog(null, "El campo apellido está vacío", "Aviso", 2);
+			JOptionPane.showMessageDialog(this, "El campo apellido está vacío", "Aviso", 2);
 			return null;
 		}
 
 		if (!txtApellido.getText().trim().matches("[a-zA-záéíóúñÑÁÉÍÓÚ]{2,15}")) {
-			JOptionPane.showMessageDialog(null, "Ingrese un apellido válido", "Aviso", 2);
+			JOptionPane.showMessageDialog(this, "Ingrese un apellido válido", "Aviso", 2);
 			return null;
 		}
 
@@ -248,12 +282,12 @@ public class FrmRegUser extends JDialog {
 
 	private String leerUsuario() {
 		if (txtUsuario.getText().trim().length() == 0) {
-			JOptionPane.showMessageDialog(null, "El campo usuario está vacío", "Aviso", 2);
+			JOptionPane.showMessageDialog(this, "El campo usuario está vacío", "Aviso", 2);
 			return null;
 		}
 
 		if (!txtUsuario.getText().trim().matches("[a-zA-z0-9]{2,4}")) {
-			JOptionPane.showMessageDialog(null, "Ingrese un usuario válido", "Aviso", 2);
+			JOptionPane.showMessageDialog(this, "Ingrese un usuario válido", "Aviso", 2);
 			return null;
 		}
 
@@ -263,12 +297,12 @@ public class FrmRegUser extends JDialog {
 	private String leerClave() {
 
 		if (String.valueOf(txtClave.getPassword()).length() == 0) {
-			JOptionPane.showMessageDialog(null, "El campo clave está vacío", "Aviso", 2);
+			JOptionPane.showMessageDialog(this, "El campo clave está vacío", "Aviso", 2);
 			return null;
 		}
 
 		if (String.valueOf(txtClave.getPassword()).length() > 5) {
-			JOptionPane.showMessageDialog(null, "Ingrese una clave válida", "Aviso", 2);
+			JOptionPane.showMessageDialog(this, "Ingrese una clave válida", "Aviso", 2);
 			return null;
 		}
 
