@@ -118,30 +118,31 @@ public class FrmRegUser extends JDialog {
 		btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.setBounds(312, 188, 97, 33);
 		panel.add(btnLimpiar);
-		
-		btnActualizar = new JButton("Actualizar");		
+
+		btnActualizar = new JButton("Actualizar");
 		btnActualizar.setBounds(312, 66, 97, 33);
 		panel.add(btnActualizar);
-		
-		btnEliminar = new JButton("Eliminar");		
+
+		btnEliminar = new JButton("Eliminar");
 		btnEliminar.setBounds(312, 132, 97, 33);
 		panel.add(btnEliminar);
-		
+
 		JLabel lblCodigo = new JLabel("C\u00F3digo");
 		lblCodigo.setBounds(23, 19, 33, 14);
 		panel.add(lblCodigo);
-		
+
 		txtCodigo = new JTextField();
 		txtCodigo.setBounds(79, 16, 136, 20);
 		panel.add(txtCodigo);
 		txtCodigo.setColumns(10);
-		
+
 		JLabel lblTipo = new JLabel("Tipo");
 		lblTipo.setBounds(23, 192, 29, 14);
 		panel.add(lblTipo);
-		
+
 		cboTipo = new JComboBox<String>();
-		cboTipo.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione", "Administrador", "Cliente", "Cajero"}));
+		cboTipo.setModel(
+				new DefaultComboBoxModel<String>(new String[] { "Seleccione", "Administrador", "Cliente", "Cajero" }));
 		cboTipo.setBounds(79, 189, 120, 20);
 		panel.add(cboTipo);
 
@@ -150,67 +151,93 @@ public class FrmRegUser extends JDialog {
 				leerTodosYRegistrar();
 			}
 		});
-		
+
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				eliminarUsuario();
 			}
 		});
-		
+
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				actualizarUsuario();
+				leerTodoActualizarUsuario();
 			}
 		});
 
 	}
-	
-	protected void actualizarUsuario() {
+
+	protected void leerTodoActualizarUsuario() {
 		int codigo, tipo;
-		String nombre, apellido, usuario,clave, fnacim;
+		String nombre, apellido, usuario, clave, fnacim;
 		codigo = leerCodigo();
-		nombre = leerNombre();		
-		apellido = leerApellido();
-		clave = leerClave();
-		usuario = leerUsuario();
-		fnacim = leerFecha();
-		tipo = leerTipo();
-		
+
+		if (codigo != -1) {
+			nombre = leerNombre();
+			if (nombre != null) {
+				apellido = leerApellido();
+				if (apellido != null) {
+					usuario = leerUsuario();
+					if (usuario != null) {
+						clave = leerClave();
+						if (clave != null) {
+							fnacim = leerFecha();
+							if (fnacim != null) {
+								tipo = leerTipo();
+								if (tipo != -1) {
+									actualizarUsuario(codigo, nombre, apellido, usuario, clave, fnacim, tipo);
+								}
+
+							}
+						}
+					}
+
+				}
+			}
+		} else {
+			return;
+		}
+
+	}
+
+	private void actualizarUsuario(int codigo, String nombre, String apellido, String usuario, String clave,
+			String fnacim, int tipo) {
 		Usuario u = new Usuario(codigo, nombre, apellido, usuario, clave, fnacim, tipo, 0);
-		
+
 		int rs = new GestionUsuarios().actualizar(u);
-		
+
 		if (rs == 0) {
 			JOptionPane.showMessageDialog(this, "Error al actualizar");
 		} else {
 			JOptionPane.showMessageDialog(this, "Usuario actualizado");
 		}
-		
 	}
 
 	private int leerTipo() {
-		
+
 		if (cboTipo.getSelectedIndex() == -1 || cboTipo.getSelectedIndex() == 0) {
 			JOptionPane.showMessageDialog(this, "Seleccion un tipo", "Aviso", 2);
 			return -1;
 		}
-		
+
 		return cboTipo.getSelectedIndex();
 	}
 
 	private void eliminarUsuario() {
 		int codigo;
 		codigo = leerCodigo();
-		int rs = new GestionUsuarios().eliminar(codigo);
-		if (rs == 0) {
-			JOptionPane.showMessageDialog(this, "No se eliminÛ, cÛdigo no existe");
-		} else {
-			JOptionPane.showMessageDialog(this, "Usuario eliminado");
+		
+		if (codigo != -1) {
+			int rs = new GestionUsuarios().eliminar(codigo);
+			if (rs == 0) {
+				JOptionPane.showMessageDialog(this, "No se eliminÛ, cÛdigo no existe");
+			} else {
+				JOptionPane.showMessageDialog(this, "Usuario eliminado");
+			}
 		}
 	}
 
 	private int leerCodigo() {
-		
+
 		if (txtCodigo.getText().trim().isEmpty()) {
 			JOptionPane.showMessageDialog(this, "El campo cÛdigo no debe estar vacÌo", "Aviso", 2);
 			return -1;
@@ -220,8 +247,7 @@ public class FrmRegUser extends JDialog {
 			JOptionPane.showMessageDialog(this, "El cÛdigo solo acepta n˙meros", "Aviso", 2);
 			return -1;
 		}
-		
-		
+
 		return Integer.parseInt(txtCodigo.getText().trim());
 	}
 
@@ -299,7 +325,7 @@ public class FrmRegUser extends JDialog {
 			return null;
 		}
 
-		if (!txtNombre.getText().trim().matches("[a-zA-Z·ÈÌÛ˙Ò—¡…Õ”⁄]{2,15}")) {
+		if (!txtNombre.getText().trim().matches("^(?=.{3,15}$)[A-Z¡…Õ”⁄a-zÒ·ÈÌÛ˙]+(?:\\s[A-Z¡…Õ”⁄a-zÒ·ÈÌÛ˙]+)?$")) {
 			JOptionPane.showMessageDialog(this, "Ingrese un nombre v·lido", "Aviso", 2);
 			return null;
 		}
@@ -313,7 +339,7 @@ public class FrmRegUser extends JDialog {
 			return null;
 		}
 
-		if (!txtApellido.getText().trim().matches("[a-zA-Z·ÈÌÛ˙Ò—¡…Õ”⁄]{2,15}")) {
+		if (!txtApellido.getText().trim().matches("^(?=.{3,20}$)[A-Z¡…Õ”⁄a-zÒ·ÈÌÛ˙]+(?:\\s[A-Z¡…Õ”⁄a-zÒ·ÈÌÛ˙]+)?$")) {
 			JOptionPane.showMessageDialog(this, "Ingrese un apellido v·lido", "Aviso", 2);
 			return null;
 		}
@@ -351,7 +377,8 @@ public class FrmRegUser extends JDialog {
 	}
 
 	private String leerFecha() {
-		// SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); Para Visualizar
+		// SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); Para
+		// Visualizar
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd");
 			return sdf.format(txtFecha.getDate());
