@@ -85,6 +85,7 @@ public class FrmPrincipal extends JFrame {
 		mnMantenimiento.add(mntmProductos);
 		
 		JMenuItem mntmUsuarios = new JMenuItem("Usuarios");		
+		mntmUsuarios.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/user-icon.png")));
 		mnMantenimiento.add(mntmUsuarios);
 
 		JMenu mnReportes = new JMenu("Reportes");
