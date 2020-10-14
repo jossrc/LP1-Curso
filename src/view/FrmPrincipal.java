@@ -83,6 +83,9 @@ public class FrmPrincipal extends JFrame {
 		JMenuItem mntmProductos = new JMenuItem("Productos");		
 		mntmProductos.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/product-icon.png")));
 		mnMantenimiento.add(mntmProductos);
+		
+		JMenuItem mntmUsuarios = new JMenuItem("Usuarios");		
+		mnMantenimiento.add(mntmUsuarios);
 
 		JMenu mnReportes = new JMenu("Reportes");
 		mnReportes.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/report-icon.png")));
@@ -138,21 +141,33 @@ public class FrmPrincipal extends JFrame {
 		mntmProductos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FrmRegProd regProd = new FrmRegProd();
+				regProd.setLocationRelativeTo(null);
 				regProd.setVisible(true);
+				
 			}
 		});
 		
 		mntmVentas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FrmReptVtas reptVtas = new FrmReptVtas();
-				reptVtas.setVisible(true);
+				reptVtas.setLocationRelativeTo(null);
+				reptVtas.setVisible(true);				
 			}
 		});
 		
 		mntmClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FrmRegCli regCli = new FrmRegCli();
-				regCli.setVisible(true);
+				regCli.setLocationRelativeTo(null);
+				regCli.setVisible(true);				
+			}
+		});
+		
+		mntmUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FrmRegUser regUser = new FrmRegUser();
+				regUser.setLocationRelativeTo(null);
+				regUser.setVisible(true);				
 			}
 		});
 		
