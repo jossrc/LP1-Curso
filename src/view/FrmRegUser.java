@@ -115,7 +115,7 @@ public class FrmRegUser extends JDialog {
 		btnRegistrar.setBounds(312, 10, 97, 33);
 		panel.add(btnRegistrar);
 
-		btnLimpiar = new JButton("Limpiar");
+		btnLimpiar = new JButton("Limpiar");		
 		btnLimpiar.setBounds(312, 188, 97, 33);
 		panel.add(btnLimpiar);
 
@@ -161,6 +161,19 @@ public class FrmRegUser extends JDialog {
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				leerTodoActualizarUsuario();
+			}
+		});
+		
+		btnLimpiar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtCodigo.setText("");
+				txtNombre.setText("");
+				txtApellido.setText("");
+				txtUsuario.setText("");
+				txtClave.setText("");
+				
+				txtCodigo.requestFocus();
+				
 			}
 		});
 
