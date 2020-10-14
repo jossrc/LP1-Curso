@@ -34,7 +34,7 @@ public class FrmRegUser extends JDialog {
 	private JTextField txtCodigo;
 	private JButton btnEliminar;
 	private JButton btnActualizar;
-	private JComboBox cboTipo;
+	private JComboBox<String> cboTipo;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -140,8 +140,8 @@ public class FrmRegUser extends JDialog {
 		lblTipo.setBounds(23, 192, 29, 14);
 		panel.add(lblTipo);
 		
-		cboTipo = new JComboBox();
-		cboTipo.setModel(new DefaultComboBoxModel(new String[] {"Seleccione", "Administrador", "Cliente", "Cajero"}));
+		cboTipo = new JComboBox<String>();
+		cboTipo.setModel(new DefaultComboBoxModel<String>(new String[] {"Seleccione", "Administrador", "Cliente", "Cajero"}));
 		cboTipo.setBounds(79, 189, 120, 20);
 		panel.add(cboTipo);
 
@@ -299,7 +299,7 @@ public class FrmRegUser extends JDialog {
 			return null;
 		}
 
-		if (!txtNombre.getText().trim().matches("[a-zA-z·ÈÌÛ˙Ò—¡…Õ”⁄]{2,15}")) {
+		if (!txtNombre.getText().trim().matches("[a-zA-Z·ÈÌÛ˙Ò—¡…Õ”⁄]{2,15}")) {
 			JOptionPane.showMessageDialog(this, "Ingrese un nombre v·lido", "Aviso", 2);
 			return null;
 		}
@@ -313,7 +313,7 @@ public class FrmRegUser extends JDialog {
 			return null;
 		}
 
-		if (!txtApellido.getText().trim().matches("[a-zA-z·ÈÌÛ˙Ò—¡…Õ”⁄]{2,15}")) {
+		if (!txtApellido.getText().trim().matches("[a-zA-Z·ÈÌÛ˙Ò—¡…Õ”⁄]{2,15}")) {
 			JOptionPane.showMessageDialog(this, "Ingrese un apellido v·lido", "Aviso", 2);
 			return null;
 		}
@@ -327,7 +327,7 @@ public class FrmRegUser extends JDialog {
 			return null;
 		}
 
-		if (!txtUsuario.getText().trim().matches("[a-zA-z0-9]{2,4}")) {
+		if (!txtUsuario.getText().trim().matches("[a-zA-Z0-9]{2,4}")) {
 			JOptionPane.showMessageDialog(this, "Ingrese un usuario v·lido", "Aviso", 2);
 			return null;
 		}
