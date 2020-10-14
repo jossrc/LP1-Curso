@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -81,14 +83,24 @@ public class FrmReptVtas extends JDialog {
 		});
 	}
 	
-	private void generarReporte() {
+	private void generarReporte() {		
+		
 		String fecha = leerFecha();
-		txtS.setText("Reporte del : " + fecha);
+		
+		if (fecha != null) {
+			txtS.setText("Reporte del : " + fecha);
+		}
 	}
 	
 	private String leerFecha() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		return sdf.format(txtFecha.getDate());
+		
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			return sdf.format(txtFecha.getDate());
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "Seleccione una fecha válida", "Aviso", 2);
+			return null;
+		}
 	}
 
 }

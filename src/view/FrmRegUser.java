@@ -352,7 +352,12 @@ public class FrmRegUser extends JDialog {
 
 	private String leerFecha() {
 		// SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); Para Visualizar
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd"); // Para BD
-		return sdf.format(txtFecha.getDate());
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd");
+			return sdf.format(txtFecha.getDate());
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(this, "Seleccione una fecha válida", "Aviso", 2);
+			return null;
+		}
 	}
 }
