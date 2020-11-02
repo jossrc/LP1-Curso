@@ -20,6 +20,4 @@ public interface UsuarioInterface {
 	// Para listado de usuarios
 	public ArrayList<Usuario> listado();
 	
-	// Para listado de usarios por tipo
-	public ArrayList<Usuario> listadoXTipos(int tipo);
 }
