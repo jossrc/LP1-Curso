@@ -149,8 +149,7 @@ public class FrmPrincipal extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				FrmRegProd regProd = new FrmRegProd();
 				regProd.setLocationRelativeTo(null);
-				regProd.setVisible(true);
-				
+				regProd.setVisible(true);				
 			}
 		});
 		
@@ -180,7 +179,9 @@ public class FrmPrincipal extends JFrame {
 		
 		mntmRepUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				FrmRepUsuarios repUsuarios = new FrmRepUsuarios();
+				repUsuarios.setLocationRelativeTo(null);
+				repUsuarios.setVisible(true);
 			}
 		});
 		

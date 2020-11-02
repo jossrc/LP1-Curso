@@ -49,6 +49,7 @@ public class FrmRepUsuarios extends JDialog {
 	}
 
 	public FrmRepUsuarios() {
+		setModal(true);
 		setTitle("Reporte de Usuarios");
 		setBounds(100, 100, 573, 395);
 		getContentPane().setLayout(null);
