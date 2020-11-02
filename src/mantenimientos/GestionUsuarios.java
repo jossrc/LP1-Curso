@@ -195,4 +195,10 @@ public class GestionUsuarios implements UsuarioInterface {
 		return u;
 	}
 
+	@Override
+	public ArrayList<Usuario> listadoXTipos(int tipo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
