@@ -151,4 +151,48 @@ public class GestionUsuarios implements UsuarioInterface {
 		return lista;
 	}
 
+	@Override
+	public Usuario buscar(int cod) {
+		
+		Usuario u = null;
+		
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		
+		try {
+			con = MySQLConexion8.getConexion();
+			String sql = "select * from tb_usuarios where codigo = ?";
+			pst = con.prepareStatement(sql);
+			
+			pst.setInt(1, cod);
+
+			rs = pst.executeQuery();
+			
+			if (rs.next()) {
+				int codigo = rs.getInt(1);
+				String nombre = rs.getString(2);
+				String apellido = rs.getString(3);
+				String usuario = rs.getString(4);
+				String clave = rs.getString(5);
+				String fnacim = rs.getString(6);
+				int id_tipo = rs.getInt(7);
+				int estado = rs.getInt(8);
+				
+				u = new Usuario(codigo, nombre, apellido, usuario, clave, fnacim, id_tipo, estado);
+				
+			}
+		} catch (Exception e) {
+			System.out.println("Error en buscar Usuario : " + e.getMessage());
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar : " + e.getMessage());
+			}
+		}
+		
+		return u;
+	}
+
 }
