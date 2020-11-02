@@ -146,7 +146,7 @@ public class FrmRegUser extends JDialog {
 		cboTipo.setBounds(79, 189, 120, 20);
 		panel.add(cboTipo);
 		
-		JButton btnBuscar = new JButton("Buscar");
+		JButton btnBuscar = new JButton("Buscar");		
 		btnBuscar.setBounds(312, 129, 97, 33);
 		panel.add(btnBuscar);
 
@@ -165,6 +165,12 @@ public class FrmRegUser extends JDialog {
 		btnActualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				leerTodoActualizarUsuario();
+			}
+		});
+		
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				buscarUsuario();
 			}
 		});
 		
@@ -227,6 +233,15 @@ public class FrmRegUser extends JDialog {
 		} else {
 			JOptionPane.showMessageDialog(this, "Usuario actualizado");
 		}
+	}
+	
+	private void buscarUsuario() {
+		int codigo = leerCodigo();
+		
+		if (codigo != -1) {
+			// TODO
+		}
+		
 	}
 
 	private int leerTipo() {
