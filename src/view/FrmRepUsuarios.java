@@ -4,6 +4,10 @@ import java.awt.EventQueue;
 
 import javax.swing.JDialog;
 import javax.swing.UIManager;
+
+import mantenimientos.GestionUsuarios;
+import model.Usuario;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -14,10 +18,14 @@ import java.awt.Cursor;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 
 public class FrmRepUsuarios extends JDialog {
 
 	private static final long serialVersionUID = 1L;
+	private JTextArea txtS;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -63,10 +71,10 @@ public class FrmRepUsuarios extends JDialog {
 		scrollPane.setBounds(10, 69, 537, 228);
 		panel.add(scrollPane);
 		
-		JTextArea txtS = new JTextArea();
+		txtS = new JTextArea();
 		scrollPane.setViewportView(txtS);
 		
-		JButton btnReporte = new JButton("REPORTE");
+		JButton btnReporte = new JButton("REPORTE");		
 		btnReporte.setForeground(Color.WHITE);
 		btnReporte.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnReporte.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -77,5 +85,29 @@ public class FrmRepUsuarios extends JDialog {
 		btnReporte.setBounds(219, 308, 118, 37);
 		panel.add(btnReporte);
 
+		btnReporte.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				listado();
+			}
+		});
+	}
+	
+	private void listado() {
+		ArrayList<Usuario> listaUsuarios = new GestionUsuarios().listado();
+		
+		if (listaUsuarios == null) {
+			txtS.setText("Listado vacío");
+		} else {
+			txtS.setText(">>>>>>>> Listado de Usuarios <<<<<<<<\n\n");
+			for (Usuario u : listaUsuarios) {
+				txtS.append("Código   : "  + u.getCodigo() + "\n" + 
+			                "Nombre   : "  + u.getNombre() + "\n" + 
+						    "Apellido : "  + u.getApellido() + "\n" +
+			                "F.Nac    : "  + u.getFnacim() + "\n" +
+						    "Tipo     : "  + u.getId_tipo() +
+						    "\n-----------------\n");
+			}
+		}
+		
 	}
 }
