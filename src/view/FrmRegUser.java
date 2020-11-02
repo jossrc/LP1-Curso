@@ -60,11 +60,11 @@ public class FrmRegUser extends JDialog {
 	public FrmRegUser() {
 		setModal(true);
 		setTitle("Mantenimiento de Usuarios");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 324);
 		getContentPane().setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 434, 261);
+		panel.setBounds(0, 0, 434, 285);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
@@ -116,7 +116,7 @@ public class FrmRegUser extends JDialog {
 		panel.add(btnRegistrar);
 
 		btnLimpiar = new JButton("Limpiar");		
-		btnLimpiar.setBounds(312, 188, 97, 33);
+		btnLimpiar.setBounds(80, 237, 97, 33);
 		panel.add(btnLimpiar);
 
 		btnActualizar = new JButton("Actualizar");
@@ -124,7 +124,7 @@ public class FrmRegUser extends JDialog {
 		panel.add(btnActualizar);
 
 		btnEliminar = new JButton("Eliminar");
-		btnEliminar.setBounds(312, 132, 97, 33);
+		btnEliminar.setBounds(232, 237, 97, 33);
 		panel.add(btnEliminar);
 
 		JLabel lblCodigo = new JLabel("C\u00F3digo");
@@ -145,6 +145,10 @@ public class FrmRegUser extends JDialog {
 				new DefaultComboBoxModel<String>(new String[] { "Seleccione", "Administrador", "Cliente", "Cajero" }));
 		cboTipo.setBounds(79, 189, 120, 20);
 		panel.add(cboTipo);
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(312, 129, 97, 33);
+		panel.add(btnBuscar);
 
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
