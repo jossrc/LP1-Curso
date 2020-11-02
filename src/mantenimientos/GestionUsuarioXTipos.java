@@ -47,7 +47,10 @@ public class GestionUsuarioXTipos implements UsuarioXTipoInterface {
 			System.out.println("Error en listado " + e.getMessage());
 		} finally {
 			try {
-				con.close();
+				if (pst != null)
+					pst.close();
+				if (con != null)
+					con.close();
 			} catch (SQLException e) {
 				System.out.println("Error al cerrar : " + e.getMessage());
 			}
@@ -58,8 +61,46 @@ public class GestionUsuarioXTipos implements UsuarioXTipoInterface {
 
 	@Override
 	public ArrayList<RepUsuarioTipo> listadoUsuariosYTipo(int tipo) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<RepUsuarioTipo> lista = new ArrayList<RepUsuarioTipo>();
+		
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+		try {
+			con = MySQLConexion8.getConexion();
+			String sql = "{call usp_consulta(?)}"; // Stored Procedure
+
+			pst = con.prepareStatement(sql);
+			pst.setInt(1, tipo);
+			
+			rs = pst.executeQuery();
+			
+			while(rs.next()) {
+				int codigo = rs.getInt(1);
+				String nombre = rs.getString(2);
+				String apellido = rs.getString(3);				
+				String fech_nac = rs.getString(4);
+				String desc_tipo = rs.getString(5);							
+				
+				RepUsuarioTipo rut = new RepUsuarioTipo(codigo, nombre, apellido, fech_nac, desc_tipo);
+				
+				lista.add(rut);
+			}
+
+		} catch (Exception e) {
+			System.out.println("Error en listado " + e.getMessage());
+		} finally {
+			try {
+				if (pst != null)
+					pst.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar : " + e.getMessage());
+			}
+		}
+		
+		return lista;
 	}
 
 }
