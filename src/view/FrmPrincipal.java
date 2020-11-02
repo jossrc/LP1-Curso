@@ -96,6 +96,12 @@ public class FrmPrincipal extends JFrame {
 		mntmVentas.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/sale-icon.png")));
 		mnReportes.add(mntmVentas);
 		
+		JMenuItem mntmRepUsuarios = new JMenuItem("Usuarios");		
+		mnReportes.add(mntmRepUsuarios);
+		
+		JMenuItem mntmRepUsuariosXTipos = new JMenuItem("Usuarios Por Tipo");		
+		mnReportes.add(mntmRepUsuariosXTipos);
+		
 		JMenu mnJuegos = new JMenu("Juegos");
 		mnJuegos.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/play-icon.png")));
 		menuBar.add(mnJuegos);
@@ -169,6 +175,18 @@ public class FrmPrincipal extends JFrame {
 				FrmRegUser regUser = new FrmRegUser();
 				regUser.setLocationRelativeTo(null);
 				regUser.setVisible(true);				
+			}
+		});
+		
+		mntmRepUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		
+		mntmRepUsuariosXTipos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		
