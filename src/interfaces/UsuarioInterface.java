@@ -13,6 +13,9 @@ public interface UsuarioInterface {
 
 	// Para actualizar usuarios:
 	public int actualizar(Usuario u);
+	
+	// Para buscar un usuario por código
+	public Usuario buscar(int codigo);
 
 	// Para listado de usuarios
 	public ArrayList<Usuario> listado();
