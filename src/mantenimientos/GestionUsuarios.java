@@ -195,4 +195,50 @@ public class GestionUsuarios implements UsuarioInterface {
 		return u;
 	}
 
+	@Override
+	public Usuario validarAcceso(String usuario, String clave) {
+
+		Usuario u = null;
+		Connection con = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+
+		try {
+			con = MySQLConexion8.getConexion();
+			String sql = "select * from tb_usuarios where usuario = ? and clave = ?";
+
+			pst = con.prepareStatement(sql);
+			pst.setString(1, usuario);
+			pst.setString(2, clave);
+
+			rs = pst.executeQuery();
+
+			if (rs.next()) {
+				u = new Usuario();
+
+				u.setCodigo(rs.getInt(1));
+				u.setNombre(rs.getString(2));
+				u.setApellido(rs.getString(3));
+				u.setUsuario(rs.getString(4));
+				u.setClave(rs.getString(5));
+				u.setFnacim(rs.getString(6));
+				u.setId_tipo(rs.getInt(7));
+				u.setEstado(rs.getInt(8));
+			}
+		} catch (Exception e) {
+			System.out.println("Error en validar Acceso " + e.getMessage());
+		} finally {
+			try {
+				if (pst != null)
+					pst.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException e) {
+				System.out.println("Error al cerrar ");
+			}
+		}
+
+		return u;
+	}
+
 }
