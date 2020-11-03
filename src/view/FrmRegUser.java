@@ -239,7 +239,22 @@ public class FrmRegUser extends JDialog {
 		int codigo = leerCodigo();
 		
 		if (codigo != -1) {
-			// TODO
+			Usuario u = new GestionUsuarios().buscar(codigo);
+			
+			if (u == null) {
+				JOptionPane.showMessageDialog(this, "Código de usuario, no existe");
+			} else {
+				txtNombre.setText(u.getNombre());
+				txtApellido.setText(u.getApellido());
+				txtUsuario.setText(u.getUsuario());
+				txtClave.setText(u.getClave());
+				try {
+					txtFecha.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(u.getFnacim()));
+				} catch (Exception e) {
+					System.out.println("Error en convertir la fecha : " + e.getMessage());
+				}
+				cboTipo.setSelectedIndex(u.getId_tipo());				
+			}
 		}
 		
 	}
