@@ -7,8 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import hilos.HiloLogueo;
+import mantenimientos.GestionUsuarios;
+import model.Usuario;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
@@ -120,14 +124,14 @@ public class Logueo extends JFrame {
 		txtUsuario.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				btnAceptar.setEnabled(txtUsuario.getText().length() >= 2 && txtPassword.getPassword().length >= 8);
+				btnAceptar.setEnabled(txtUsuario.getText().length() >= 2 && txtPassword.getPassword().length >= 2);
 			}
 		});
 
 		txtPassword.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent arg0) {
-				btnAceptar.setEnabled(txtUsuario.getText().length() >= 2 && txtPassword.getPassword().length >= 8);
+				btnAceptar.setEnabled(txtUsuario.getText().length() >= 2 && txtPassword.getPassword().length >= 2);
 			}
 			
 			@Override
@@ -141,14 +145,29 @@ public class Logueo extends JFrame {
 		
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				abrirVentanaPrincipal();
+				acceder();
 			}
 		});
 		
 	}
 	
+	private void acceder() {
+		String usuario = leerUsuario();
+		String clave = leerClave();
+		
+		Usuario u = new GestionUsuarios().validarAcceso(usuario, clave);
+		
+		if ( u != null) {
+			abrirVentanaPrincipal();
+			dispose();
+		} else {
+			aviso("Usuario o clave incorrecto");
+		}
+	}
+	
 	private void abrirVentanaPrincipal() {
 		FrmPreLoader loader = new FrmPreLoader();
+		loader.setLocationRelativeTo(null);
 		loader.setVisible(true);
 		dispose();
 	}
@@ -157,4 +176,17 @@ public class Logueo extends JFrame {
 		HiloLogueo hilo = new HiloLogueo(this);
 		hilo.start();
 	}
+	
+	private String leerUsuario() {
+		return txtUsuario.getText();
+	}
+	
+	private String leerClave() {
+		return String.valueOf(txtPassword.getPassword());
+	}
+	
+	private void aviso(String msg) {
+		JOptionPane.showMessageDialog(null, msg);		
+	}
+	
 }
