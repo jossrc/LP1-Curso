@@ -44,11 +44,63 @@ insert into tb_tipo values (1, 'Administrador');
 insert into tb_tipo values (2, 'Cliente');
 insert into tb_tipo values (3, 'Cajero');
 
+insert into tb_usuarios values (null,'supervisor', 'sistema','admi', 'admin', curdate(),1,1);
+insert into tb_usuarios values (null,'Tito','Ciber','U001', '10001', curdate(),2,1);
+insert into tb_usuarios values (null,'Zoila','Baca','U002', '10002', curdate(),2,1);
+insert into tb_usuarios values (null,'Pedro','Navaja','C001', '10001', curdate(),3,1);
+
 insert into tb_categorias values (1, 'Pastillas');
 insert into tb_categorias values (2, 'Jarabe');
-insert into tb_categorias values (3, 'Otros');
+insert into tb_categorias values (3, 'Cremas');
+insert into tb_categorias values (4, 'Tocador');
+insert into tb_categorias values (5, 'Cuidado');
+insert into tb_categorias values (6, 'Otros');
 
-select * from tb_usuarios;
-insert into tb_usuarios values (1, 'José', 'Robles', 'user', 'pass', '2020/10/06',1,1);
-insert into tb_usuarios values (null, 'José', 'Atuncar', 'prof', 'prof', '1980/10/06',1,1);
-insert into tb_usuarios values (null, 'Alvaro', 'Ramirez', 'prof', 'prof', '1985/08/10',default,default);
+insert into tb_productos values ('P0001','Panadol cj 10',20,1.85,1,1);
+insert into tb_productos values ('P0002','Curitas unidad',100,1.0,3,1);
+insert into tb_productos values ('P0003','Kita tos',80,15.0,2,1);
+insert into tb_productos values ('P0004','Achiz',120,1.0,1,1);
+insert into tb_productos values ('P0005','Jaboncillo cj',120,1.0,3,1);
+insert into tb_productos values ('P0006','Termometro',80,2.8,5,1);
+insert into tb_productos values ('P0007','Panadol jarabe pq',40,10.5,2,1);
+insert into tb_productos values ('P0008','Antalgina',55,1.8,1,1);
+insert into tb_productos values ('P0009','Ibuprofeno',60,15.0,4,1);
+insert into tb_productos values ('P0010','Mejoralito Niños',10,1.5,1,1);
+insert into tb_productos values ('P0011','Panadol jarabe',10,1.5,2,1);
+insert into tb_productos values ('P0012','Jabon Neko',40,8.5,4,1);
+insert into tb_productos values ('P0013','Pañales x 24u',10,1.5,5,1);
+insert into tb_productos values ('P0014','Mejoralito Forte',10,1.5,1,1);
+insert into tb_productos values ('P0015','Champu Amigo',50,0.99,5,1);
+insert into tb_productos values ('P0016','Mejoralito',10,1.5,4,1);
+insert into tb_productos values ('P0017','SinDolor',23,1.5,6,1);
+insert into tb_productos values ('P0018','Mejoralito Forte',10,1.5,2,1);
+insert into tb_productos values ('P0019','Mejoralito Forte',10,1.5,1,1);
+insert into tb_productos values ('P0020','Mejoralito Forte',10,1.5,3,1);
+insert into tb_productos values ('P0021','Mejoralito Forte',10,1.5,2,1);
+insert into tb_productos values ('P0022','Mejoralito Forte',10,1.5,1,1);
+insert into tb_productos values ('P0023','Mejoralito Forte',10,1.5,1,1);
+insert into tb_productos values ('P0024','Mejoralito Forte',10,1.5,2,1);
+insert into tb_productos values ('P0025','Mejoralito Forte',10,1.5,1,1);
+insert into tb_productos values ('P0026','Mejoralito Forte',10,1.5,3,1);
+insert into tb_productos values ('P0027','Mejoralito Forte',10,1.5,1,1);
+insert into tb_productos values ('P0028','Mejoralito Forte',10,1.5,4,1);
+insert into tb_productos values ('P0029','Mejoralito Forte',10,1.5,1,1);
+insert into tb_productos values ('P0030','Mejoralito Forte',10,1.5,5,1);
+insert into tb_productos values ('P0031','Mejoralito UForte',10,0.99,5,1);
+
+delimiter $$
+create procedure usp_consulta(xtipo int)
+begin
+  select u.codigo   as 'Codigo', 
+         u.nombre   as 'Nombre', 
+         u.apellido as 'Apellido', 
+         u.fnacim   as 'Fech Nac', 
+         t.des_tipo as 'Tipo'
+  from tb_usuarios u
+  inner join tb_tipo t
+    on u.id_tipo = t.id_tipo
+  where u.id_tipo = xtipo;
+end $$
+delimiter ;
+
+call usp_consulta(2);
