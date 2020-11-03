@@ -89,9 +89,11 @@ public class FrmPrincipal extends JFrame {
 		mnMantenimiento.add(mntmUsuarios);
 		
 		JMenu mnTransaccional = new JMenu("Transaccional");
+		mnTransaccional.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/tran-icon.png")));
 		menuBar.add(mnTransaccional);
 		
 		JMenuItem mntmVentas_1 = new JMenuItem("Ventas");
+		mntmVentas_1.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/shopping-icon.png")));
 		mnTransaccional.add(mntmVentas_1);
 
 		JMenu mnReportes = new JMenu("Reportes");
