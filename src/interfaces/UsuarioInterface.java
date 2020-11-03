@@ -20,4 +20,7 @@ public interface UsuarioInterface {
 	// Para listado de usuarios
 	public ArrayList<Usuario> listado();
 	
+	// Para que un usuario tenga acceso
+	public Usuario validarAcceso(String usuario, String clave);
+	
 }
