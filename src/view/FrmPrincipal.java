@@ -187,7 +187,9 @@ public class FrmPrincipal extends JFrame {
 		
 		mntmRepUsuariosXTipos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				FrmRepUsuariosXTipo repUsuariosXTipo = new FrmRepUsuariosXTipo();
+				repUsuariosXTipo.setLocationRelativeTo(null);
+				repUsuariosXTipo.setVisible(true);
 			}
 		});
 		
