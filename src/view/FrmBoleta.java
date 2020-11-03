@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.EventQueue;
 
 import javax.swing.JDialog;
@@ -11,12 +12,13 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 public class FrmBoleta extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtCodigoCliente;
+	private JTextField txtNombreCompleto;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -51,7 +53,7 @@ public class FrmBoleta extends JDialog {
 		
 		JPanel pCliente = new JPanel();
 		pCliente.setBorder(crearBordeTitulo("Cliente"));
-		pCliente.setBounds(10, 11, 336, 111);
+		pCliente.setBounds(10, 11, 336, 94);
 		pBoleta.add(pCliente);
 		pCliente.setLayout(null);
 		
@@ -63,27 +65,32 @@ public class FrmBoleta extends JDialog {
 		lblNombre.setBounds(10, 59, 37, 14);
 		pCliente.add(lblNombre);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBounds(59, 28, 86, 20);
-		pCliente.add(textField);
-		textField.setColumns(10);
+		txtCodigoCliente = new JTextField();
+		txtCodigoCliente.setEditable(false);
+		txtCodigoCliente.setBounds(57, 28, 128, 20);
+		pCliente.add(txtCodigoCliente);
+		txtCodigoCliente.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setEditable(false);
-		textField_1.setBounds(57, 56, 214, 20);
-		pCliente.add(textField_1);
-		textField_1.setColumns(10);
+		txtNombreCompleto = new JTextField();
+		txtNombreCompleto.setEditable(false);
+		txtNombreCompleto.setBounds(57, 56, 214, 20);
+		pCliente.add(txtNombreCompleto);
+		txtNombreCompleto.setColumns(10);
 		
 		JButton btnBuscarCliente = new JButton("");
-		btnBuscarCliente.setBounds(179, 14, 68, 34);
+		btnBuscarCliente.setBorder(null);
+		btnBuscarCliente.setBorderPainted(false);
+		btnBuscarCliente.setContentAreaFilled(false);
+		btnBuscarCliente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnBuscarCliente.setIcon(new ImageIcon(FrmBoleta.class.getResource("/img/search-icon.png")));
+		btnBuscarCliente.setBounds(278, 44, 37, 34);
 		pCliente.add(btnBuscarCliente);
 
 	}
 	
 	private TitledBorder crearBordeTitulo(String titulo) {
 		TitledBorder titled = new TitledBorder(UIManager.getBorder("TitledBorder.border"), titulo, TitledBorder.LEADING, TitledBorder.TOP, null, null);
-		titled.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		titled.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		
 		return titled;
 	}
