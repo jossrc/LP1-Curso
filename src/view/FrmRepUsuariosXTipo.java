@@ -8,13 +8,14 @@ import javax.swing.table.DefaultTableModel;
 
 import mantenimientos.GestionTipos;
 import mantenimientos.GestionUsuarioXTipos;
-import mantenimientos.GestionUsuarios;
 import model.RepUsuarioTipo;
 import model.Tipos;
 import model.Usuario;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -120,7 +121,7 @@ public class FrmRepUsuariosXTipo extends JDialog {
 		
 		btnListado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				listadoArea();
+				listado();
 			}
 		});
 
@@ -139,11 +140,18 @@ public class FrmRepUsuariosXTipo extends JDialog {
 		}	
 	}
 	
-	private void listadoArea() {
-		
+	private void listado() {
 		int tipo = leerTipo();
 		
-		if (tipo != -1 || tipo != 0) {
+		if (tipo != -1) {
+			listadoArea(tipo);
+			listadoTabla(tipo);
+		}
+	}
+	
+	private void listadoArea(int tipo) {		
+		
+		if (tipo != -1 && tipo != 0) {
 			ArrayList<Usuario> listaUsuarios = new GestionUsuarioXTipos().listadoUsuariosxTipo(tipo);
 			
 			if (listaUsuarios == null) {
@@ -160,7 +168,22 @@ public class FrmRepUsuariosXTipo extends JDialog {
 				}
 			}
 		}
-
+	}
+	
+	private void listadoTabla(int tipo) {
+		
+		if (tipo != -1 && tipo != 0) {
+			ArrayList<RepUsuarioTipo> listaRepUsuarioTipo = new GestionUsuarioXTipos().listadoUsuariosYTipo(tipo);
+			
+			if (listaRepUsuarioTipo == null) {
+				JOptionPane.showMessageDialog(this, "Listado vacío");
+			} else {
+				model.setRowCount(0);
+				for (RepUsuarioTipo usuario : listaRepUsuarioTipo) {
+					insertarNuevaFila(usuario);
+				}
+			}
+		}
 	}
 	
 	private void insertarNuevaFila(RepUsuarioTipo u) {
@@ -169,6 +192,14 @@ public class FrmRepUsuariosXTipo extends JDialog {
 	}
 	
 	private int leerTipo() {
+		
+		int tipo = cboTipo.getSelectedIndex();
+		
+		if (tipo == -1 || tipo == 0) {
+			JOptionPane.showMessageDialog(this, "Seleccione un tipo...");
+			return -1;
+		}
+		
 		return cboTipo.getSelectedIndex();
 	}
 }
