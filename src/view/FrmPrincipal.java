@@ -58,7 +58,7 @@ public class FrmPrincipal extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(FrmPrincipal.class.getResource("/img/main-icon.png")));
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 484);
+		setBounds(100, 100, 760, 550);
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -87,6 +87,12 @@ public class FrmPrincipal extends JFrame {
 		JMenuItem mntmUsuarios = new JMenuItem("Usuarios");		
 		mntmUsuarios.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/user-icon.png")));
 		mnMantenimiento.add(mntmUsuarios);
+		
+		JMenu mnTransaccional = new JMenu("Transaccional");
+		menuBar.add(mnTransaccional);
+		
+		JMenuItem mntmVentas_1 = new JMenuItem("Ventas");
+		mnTransaccional.add(mntmVentas_1);
 
 		JMenu mnReportes = new JMenu("Reportes");
 		mnReportes.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/report-icon.png")));
@@ -116,7 +122,7 @@ public class FrmPrincipal extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 684, 424);
+		panel.setBounds(0, 0, 744, 489);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
