@@ -22,6 +22,10 @@ public class Usuario {
 		this.id_tipo = id_tipo;
 		this.estado = estado;
 	}
+	
+	public Usuario() {
+		
+	}
 
 	public int getCodigo() {
 		return codigo;
