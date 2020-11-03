@@ -4,6 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JDialog;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
+
+import mantenimientos.GestionTipos;
+import model.Tipos;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -15,11 +20,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 
 public class FrmRepUsuariosXTipo extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JTable tblUsuariosXTipo;
+	private DefaultTableModel model;
+	private JComboBox<String> cboTipo;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -61,7 +71,7 @@ public class FrmRepUsuariosXTipo extends JDialog {
 		lblTitulo.setBounds(10, 11, 457, 39);
 		panel.add(lblTitulo);
 		
-		JComboBox<String> cboTipo = new JComboBox<String>();
+		cboTipo = new JComboBox<String>();
 		cboTipo.setBounds(76, 61, 157, 20);
 		panel.add(cboTipo);
 		
@@ -81,9 +91,16 @@ public class FrmRepUsuariosXTipo extends JDialog {
 		panel.add(scrollTable);
 		
 		tblUsuariosXTipo = new JTable();
+		model = new DefaultTableModel();
+		tblUsuariosXTipo.setModel(model);
 		scrollTable.setViewportView(tblUsuariosXTipo);
+		model.addColumn("C\u00F3digo");
+		model.addColumn("Nombre");
+		model.addColumn("Apellido");
+		model.addColumn("F.Nac");
+		model.addColumn("Tipo");
 		
-		JButton btnListado = new JButton("LISTADO");
+		JButton btnListado = new JButton("LISTADO");		
 		btnListado.setForeground(Color.WHITE);
 		btnListado.setFont(new Font("SansSerif", Font.BOLD, 14));
 		btnListado.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -93,6 +110,31 @@ public class FrmRepUsuariosXTipo extends JDialog {
 		btnListado.setBackground(new Color(162, 164, 165));
 		btnListado.setBounds(178, 482, 121, 37);
 		panel.add(btnListado);
+		
+		llenaCombo();		
+		
+		btnListado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 
+	}
+	
+	private void llenaCombo() {
+		cboTipo.addItem("Seleccione...");
+		ArrayList<Tipos> listaTipos = new GestionTipos().listado();
+		
+		if (listaTipos == null) {
+			System.out.println("Hubo un problema al cargar la lista de tipos");
+		} else {
+			for (Tipos tipo : listaTipos) {
+				cboTipo.addItem(tipo.getId() + ".- " + tipo.getDescripcion());
+			}
+		}	
+	}
+	
+	private int leerTipo() {
+		return cboTipo.getSelectedIndex();
 	}
 }
