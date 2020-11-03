@@ -7,7 +7,11 @@ import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
 
 import mantenimientos.GestionTipos;
+import mantenimientos.GestionUsuarioXTipos;
+import mantenimientos.GestionUsuarios;
+import model.RepUsuarioTipo;
 import model.Tipos;
+import model.Usuario;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -30,6 +34,7 @@ public class FrmRepUsuariosXTipo extends JDialog {
 	private JTable tblUsuariosXTipo;
 	private DefaultTableModel model;
 	private JComboBox<String> cboTipo;
+	private JTextArea txtS;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -83,7 +88,7 @@ public class FrmRepUsuariosXTipo extends JDialog {
 		scrollArea.setBounds(10, 98, 457, 173);
 		panel.add(scrollArea);
 		
-		JTextArea txtS = new JTextArea();
+		txtS = new JTextArea();
 		scrollArea.setViewportView(txtS);
 		
 		JScrollPane scrollTable = new JScrollPane();
@@ -115,7 +120,7 @@ public class FrmRepUsuariosXTipo extends JDialog {
 		
 		btnListado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				listadoArea();
 			}
 		});
 
@@ -132,6 +137,35 @@ public class FrmRepUsuariosXTipo extends JDialog {
 				cboTipo.addItem(tipo.getId() + ".- " + tipo.getDescripcion());
 			}
 		}	
+	}
+	
+	private void listadoArea() {
+		
+		int tipo = leerTipo();
+		
+		if (tipo != -1 || tipo != 0) {
+			ArrayList<Usuario> listaUsuarios = new GestionUsuarioXTipos().listadoUsuariosxTipo(tipo);
+			
+			if (listaUsuarios == null) {
+				txtS.setText("Listado vacío");
+			} else {
+				txtS.setText(">>>>>>>> Listado de Usuarios <<<<<<<<\n\n");
+				for (Usuario u : listaUsuarios) {
+					txtS.append("Código   : "  + u.getCodigo() + "\n" + 
+				                "Nombre   : "  + u.getNombre() + "\n" + 
+							    "Apellido : "  + u.getApellido() + "\n" +
+				                "F.Nac    : "  + u.getFnacim() + "\n" +
+							    "Tipo     : "  + u.getId_tipo() +
+							    "\n-----------------\n");
+				}
+			}
+		}
+
+	}
+	
+	private void insertarNuevaFila(RepUsuarioTipo u) {
+		Object datos[] = {u.getCodigo(), u.getNombre(), u.getApellido(), u.getFech_nac(), u.getDesc_tipo()};		
+		model.addRow(datos);
 	}
 	
 	private int leerTipo() {
