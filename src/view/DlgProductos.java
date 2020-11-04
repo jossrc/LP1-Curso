@@ -8,7 +8,12 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.table.DefaultTableModel;
+
+import mantenimientos.GestionProductos;
+import model.Producto;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class DlgProductos extends JDialog {
@@ -65,8 +70,11 @@ public class DlgProductos extends JDialog {
 		btnCerrar.setBounds(253, 358, 98, 23);
 		getContentPane().add(btnCerrar);
 		
+		listado();
+		
 		btnSeleccionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				enviarDatos();
 			}
 		});
 		
@@ -76,6 +84,34 @@ public class DlgProductos extends JDialog {
 			}
 		});
 
+	}
+	
+	private void enviarDatos() {
+		int fila = tblProductos.getSelectedRow();
+		
+		String codigo = tblProductos.getValueAt(fila, 0).toString();
+		String producto = tblProductos.getValueAt(fila, 1).toString();
+		String cantidad = tblProductos.getValueAt(fila, 2).toString();
+		String precio = tblProductos.getValueAt(fila, 3).toString();
+		
+		FrmBoleta.txtCodigoProducto.setText(codigo);
+		FrmBoleta.txtDescProducto.setText(producto);
+		FrmBoleta.txtStock.setText(cantidad);
+		FrmBoleta.txtPrecioUnit.setText(precio);		
+
+		dispose();
+	}
+	
+	void listado() {
+		ArrayList<Producto> listaProductos = new GestionProductos().listadoProductos();
+		for (Producto prod : listaProductos) {
+			insertarNuevaFila(prod);
+		}
+	}
+	
+	private void insertarNuevaFila(Producto prod) {
+		Object datos[] = {prod.getCodigo(), prod.getProducto(), prod.getCantidad(), prod.getPrecio()};		
+		model.addRow(datos);
 	}
 
 }
