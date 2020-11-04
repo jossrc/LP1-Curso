@@ -25,13 +25,15 @@ import java.awt.event.ActionEvent;
 public class FrmBoleta extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField txtCodigoCliente;
-	private JTextField txtNombreCompleto;
-	private JTextField txtCodigoProducto;
+	
+	public static JTextField txtCodigoCliente;
+	public static JTextField txtNombreCompleto;
+	public static JTextField txtCodigoProducto;	
+	public static JTextField txtPrecioUnit;
+	public static JTextField txtDescProducto;
+	public static JTextField txtStock;
+	
 	private JTextField txtCantidadAComprar;
-	private JTextField txtPrecioUnit;
-	private JTextField txtDescProducto;
-	private JTextField txtStock;
 	private JTable tblVenta;
 	private DefaultTableModel model;
 	private JTextField txtTotal;
