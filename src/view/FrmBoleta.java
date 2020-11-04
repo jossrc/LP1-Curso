@@ -10,15 +10,22 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import java.awt.Font;
 
 public class FrmBoleta extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField txtCodigoCliente;
 	private JTextField txtNombreCompleto;
+	private JTextField txtCodigoProducto;
+	private JTextField txtCantidadAComprar;
+	private JTextField txtPrecioUnit;
+	private JTextField txtDescProducto;
+	private JTextField txtStock;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -42,38 +49,39 @@ public class FrmBoleta extends JDialog {
 	}
 
 	public FrmBoleta() {
+		setModal(true);
 		setTitle("Venta y Boleta");
-		setBounds(100, 100, 690, 487);
+		setBounds(100, 100, 690, 536);
 		getContentPane().setLayout(null);
 		
 		JPanel pBoleta = new JPanel();
-		pBoleta.setBounds(0, 0, 674, 448);
+		pBoleta.setBounds(0, 0, 674, 497);
 		getContentPane().add(pBoleta);
 		pBoleta.setLayout(null);
 		
 		JPanel pCliente = new JPanel();
-		pCliente.setBorder(crearBordeTitulo("Cliente"));
+		pCliente.setBorder(crearBordeTitulo("Datos del Cliente"));
 		pCliente.setBounds(10, 11, 336, 94);
 		pBoleta.add(pCliente);
 		pCliente.setLayout(null);
 		
-		JLabel lblCodigo = new JLabel("C\u00F3digo");
-		lblCodigo.setBounds(10, 31, 33, 14);
-		pCliente.add(lblCodigo);
+		JLabel lblCodigoCliente = new JLabel("C\u00D3DIGO");
+		lblCodigoCliente.setBounds(10, 31, 41, 14);
+		pCliente.add(lblCodigoCliente);
 		
-		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(10, 59, 37, 14);
+		JLabel lblNombre = new JLabel("NOMBRE");
+		lblNombre.setBounds(10, 59, 42, 14);
 		pCliente.add(lblNombre);
 		
 		txtCodigoCliente = new JTextField();
 		txtCodigoCliente.setEditable(false);
-		txtCodigoCliente.setBounds(57, 28, 128, 20);
+		txtCodigoCliente.setBounds(64, 28, 121, 20);
 		pCliente.add(txtCodigoCliente);
 		txtCodigoCliente.setColumns(10);
 		
 		txtNombreCompleto = new JTextField();
 		txtNombreCompleto.setEditable(false);
-		txtNombreCompleto.setBounds(57, 56, 214, 20);
+		txtNombreCompleto.setBounds(64, 56, 209, 20);
 		pCliente.add(txtNombreCompleto);
 		txtNombreCompleto.setColumns(10);
 		
@@ -83,8 +91,88 @@ public class FrmBoleta extends JDialog {
 		btnBuscarCliente.setContentAreaFilled(false);
 		btnBuscarCliente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBuscarCliente.setIcon(new ImageIcon(FrmBoleta.class.getResource("/img/search-icon.png")));
-		btnBuscarCliente.setBounds(278, 44, 37, 34);
+		btnBuscarCliente.setBounds(289, 46, 37, 34);
 		pCliente.add(btnBuscarCliente);
+		
+		JPanel pProducto = new JPanel();
+		pProducto.setLayout(null);
+		pProducto.setBorder(crearBordeTitulo("Datos del Producto"));
+		pProducto.setBounds(10, 126, 545, 132);
+		pBoleta.add(pProducto);
+		
+		JLabel lblCodigoProducto = new JLabel("C\u00D3DIGO");
+		lblCodigoProducto.setBounds(22, 19, 41, 14);
+		pProducto.add(lblCodigoProducto);
+		
+		txtCodigoProducto = new JTextField();
+		txtCodigoProducto.setEditable(false);
+		txtCodigoProducto.setColumns(10);
+		txtCodigoProducto.setBounds(21, 44, 144, 20);
+		pProducto.add(txtCodigoProducto);
+		
+		JLabel lblCantidad = new JLabel("CANTIDAD");
+		lblCantidad.setBounds(259, 19, 52, 14);
+		pProducto.add(lblCantidad);
+		
+		txtCantidadAComprar = new JTextField();
+		txtCantidadAComprar.setColumns(10);
+		txtCantidadAComprar.setBounds(259, 44, 115, 20);
+		pProducto.add(txtCantidadAComprar);
+		
+		JLabel lblPrecio = new JLabel("PRECIO");
+		lblPrecio.setBounds(403, 19, 38, 14);
+		pProducto.add(lblPrecio);
+		
+		txtPrecioUnit = new JTextField();
+		txtPrecioUnit.setEditable(false);
+		txtPrecioUnit.setColumns(10);
+		txtPrecioUnit.setBounds(397, 44, 115, 20);
+		pProducto.add(txtPrecioUnit);
+		
+		JLabel lblDescripcion = new JLabel("DESCRIPCI\u00D3N");
+		lblDescripcion.setBounds(22, 75, 69, 14);
+		pProducto.add(lblDescripcion);
+		
+		txtDescProducto = new JTextField();
+		txtDescProducto.setEditable(false);
+		txtDescProducto.setColumns(10);
+		txtDescProducto.setBounds(22, 100, 218, 20);
+		pProducto.add(txtDescProducto);
+		
+		JLabel lblStock = new JLabel("STOCK");
+		lblStock.setBounds(259, 75, 33, 14);
+		pProducto.add(lblStock);
+		
+		txtStock = new JTextField();
+		txtStock.setEditable(false);
+		txtStock.setColumns(10);
+		txtStock.setBounds(259, 100, 115, 20);
+		pProducto.add(txtStock);
+		
+		JButton btnBuscarProducto = new JButton("");
+		btnBuscarProducto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnBuscarProducto.setIcon(new ImageIcon(FrmBoleta.class.getResource("/img/search-icon.png")));
+		btnBuscarProducto.setContentAreaFilled(false);
+		btnBuscarProducto.setBorderPainted(false);
+		btnBuscarProducto.setBorder(null);
+		btnBuscarProducto.setBounds(185, 34, 37, 34);
+		pProducto.add(btnBuscarProducto);
+		
+		JButton btnAgregarCarrito = new JButton("");
+		btnAgregarCarrito.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnAgregarCarrito.setRolloverIcon(new ImageIcon(FrmBoleta.class.getResource("/img/cartph.png")));
+		btnAgregarCarrito.setIcon(new ImageIcon(FrmBoleta.class.getResource("/img/cartp.png")));
+		btnAgregarCarrito.setContentAreaFilled(false);
+		btnAgregarCarrito.setBorderPainted(false);
+		btnAgregarCarrito.setBorder(null);
+		btnAgregarCarrito.setBounds(397, 86, 37, 34);
+		pProducto.add(btnAgregarCarrito);
+		
+		String mensajeCarrito = "<html>Agregar al<br/>Carrito</html>";
+		JLabel lblAgregarAlCarrito = new JLabel(mensajeCarrito);
+		lblAgregarAlCarrito.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 11));
+		lblAgregarAlCarrito.setBounds(444, 86, 68, 34);
+		pProducto.add(lblAgregarAlCarrito);
 
 	}
 	
