@@ -274,7 +274,8 @@ public class FrmBoleta extends JDialog {
 		
 		btnBuscarProducto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				DlgProductos dg = new DlgProductos();
+				dg.setVisible(true);
 			}
 		});
 		
