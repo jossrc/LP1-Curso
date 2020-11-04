@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FrmBoleta extends JDialog {
 
@@ -94,7 +96,7 @@ public class FrmBoleta extends JDialog {
 		pCliente.add(txtNombreCompleto);
 		txtNombreCompleto.setColumns(10);
 		
-		JButton btnBuscarCliente = new JButton("");
+		JButton btnBuscarCliente = new JButton("");		
 		btnBuscarCliente.setBorder(null);
 		btnBuscarCliente.setBorderPainted(false);
 		btnBuscarCliente.setContentAreaFilled(false);
@@ -158,7 +160,7 @@ public class FrmBoleta extends JDialog {
 		txtStock.setBounds(259, 100, 115, 20);
 		pProducto.add(txtStock);
 		
-		JButton btnBuscarProducto = new JButton("");
+		JButton btnBuscarProducto = new JButton("");		
 		btnBuscarProducto.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBuscarProducto.setIcon(new ImageIcon(FrmBoleta.class.getResource("/img/search-icon.png")));
 		btnBuscarProducto.setContentAreaFilled(false);
@@ -167,7 +169,7 @@ public class FrmBoleta extends JDialog {
 		btnBuscarProducto.setBounds(185, 34, 37, 34);
 		pProducto.add(btnBuscarProducto);
 		
-		JButton btnAgregarCarrito = new JButton("");
+		JButton btnAgregarCarrito = new JButton("");		
 		btnAgregarCarrito.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAgregarCarrito.setRolloverIcon(new ImageIcon(FrmBoleta.class.getResource("/img/cartph.png")));
 		btnAgregarCarrito.setIcon(new ImageIcon(FrmBoleta.class.getResource("/img/cartp.png")));
@@ -260,6 +262,24 @@ public class FrmBoleta extends JDialog {
 		button.setBorder(null);
 		button.setBounds(289, 46, 37, 34);
 		pCabecera.add(button);
+		
+		btnBuscarCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
+		btnBuscarProducto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
+		btnAgregarCarrito.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 
 	}
 	
