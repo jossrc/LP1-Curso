@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -20,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class FrmBoleta extends JDialog {
@@ -39,6 +41,10 @@ public class FrmBoleta extends JDialog {
 	private JTextField txtTotal;
 	private JTextField txtNumBoleta;
 	private JTextField txtFecha;
+	
+	// Globales
+	private double acTotalPagar = 0;
+	//private ArrayList<DetalleBoleta> lstDetalle = new ArrayList<DetalleBoleta>();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -281,7 +287,7 @@ public class FrmBoleta extends JDialog {
 		
 		btnAgregarCarrito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				agregarProducto();
 			}
 		});
 
@@ -292,6 +298,46 @@ public class FrmBoleta extends JDialog {
 		titled.setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		
 		return titled;
+	}
+	
+	private void agregarProducto() {
+		String codigo = leerCodProd();
+		String producto = leerNomProd();
+		int cantidad = leerCantidad();
+		double precio = leerPrecio();
+		
+		double importe = cantidad * precio;
+		
+		insertarNuevaFila(codigo, producto, cantidad, precio);
+		
+		txtTotal.setText(acTotalPagar+"");		
+	}
+	
+	private void insertarNuevaFila(String codigo, String producto, int cantidad, double precio ) {
+		Object datos[] = {codigo, producto, cantidad, precio, cantidad*precio};
+		acTotalPagar+=(cantidad*precio);
+		model.addRow(datos);
+	}
+	
+	private int leerCantidad() {		
+		return Integer.parseInt(txtCantidadAComprar.getText());
+	}
+
+	private int leerStock() {
+		return Integer.parseInt(txtStock.getText());
+	}
+
+	private double leerPrecio() {		
+		return Double.parseDouble(txtPrecioUnit.getText());
+	}
+
+	private String leerNomProd() {		
+		return txtDescProducto.getText();
+	}
+
+	private String leerCodProd() {
+		// TODO Auto-generated method stub
+		return txtCodigoProducto.getText();
 	}
 	
 }
