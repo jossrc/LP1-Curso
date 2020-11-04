@@ -18,6 +18,7 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 public class FrmBoleta extends JDialog {
 
@@ -32,6 +33,8 @@ public class FrmBoleta extends JDialog {
 	private JTable tblVenta;
 	private DefaultTableModel model;
 	private JTextField txtTotal;
+	private JTextField txtNumBoleta;
+	private JTextField txtFecha;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -212,6 +215,46 @@ public class FrmBoleta extends JDialog {
 		lblTotalS.setFont(new Font("SansSerif", Font.BOLD, 12));
 		lblTotalS.setBounds(499, 465, 45, 16);
 		pBoleta.add(lblTotalS);
+		
+		JPanel pCabecera = new JPanel();
+		pCabecera.setLayout(null);
+		pCabecera.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		pCabecera.setBounds(391, 11, 273, 94);
+		pBoleta.add(pCabecera);
+		
+		JLabel lblNumBoleta = new JLabel("N\u00B0 BOLETA");
+		lblNumBoleta.setFont(new Font("SansSerif", Font.BOLD, 12));
+		lblNumBoleta.setBounds(11, 16, 64, 14);
+		pCabecera.add(lblNumBoleta);
+		
+		JLabel lblFecha = new JLabel("FECHA");
+		lblFecha.setFont(new Font("SansSerif", Font.BOLD, 12));
+		lblFecha.setBounds(10, 41, 42, 14);
+		pCabecera.add(lblFecha);
+		
+		txtNumBoleta = new JTextField();
+		txtNumBoleta.setFont(new Font("SansSerif", Font.BOLD, 12));
+		txtNumBoleta.setText("B0000");
+		txtNumBoleta.setHorizontalAlignment(SwingConstants.CENTER);
+		txtNumBoleta.setEditable(false);
+		txtNumBoleta.setColumns(10);
+		txtNumBoleta.setBounds(85, 11, 166, 20);
+		pCabecera.add(txtNumBoleta);
+		
+		txtFecha = new JTextField();
+		txtFecha.setFont(new Font("SansSerif", Font.BOLD, 12));
+		txtFecha.setHorizontalAlignment(SwingConstants.CENTER);
+		txtFecha.setEditable(false);
+		txtFecha.setColumns(10);
+		txtFecha.setBounds(85, 39, 166, 20);
+		pCabecera.add(txtFecha);
+		
+		JButton button = new JButton("");
+		button.setContentAreaFilled(false);
+		button.setBorderPainted(false);
+		button.setBorder(null);
+		button.setBounds(289, 46, 37, 34);
+		pCabecera.add(button);
 
 	}
 	
