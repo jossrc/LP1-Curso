@@ -267,7 +267,8 @@ public class FrmBoleta extends JDialog {
 		
 		btnBuscarCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				DlgClientes dg = new DlgClientes();
+				dg.setVisible(true);
 			}
 		});
 		
