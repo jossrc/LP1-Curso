@@ -10,11 +10,14 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-
+import javax.swing.table.DefaultTableModel;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
 
 public class FrmBoleta extends JDialog {
 
@@ -26,6 +29,9 @@ public class FrmBoleta extends JDialog {
 	private JTextField txtPrecioUnit;
 	private JTextField txtDescProducto;
 	private JTextField txtStock;
+	private JTable tblVenta;
+	private DefaultTableModel model;
+	private JTextField txtTotal;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -97,7 +103,7 @@ public class FrmBoleta extends JDialog {
 		JPanel pProducto = new JPanel();
 		pProducto.setLayout(null);
 		pProducto.setBorder(crearBordeTitulo("Datos del Producto"));
-		pProducto.setBounds(10, 126, 545, 132);
+		pProducto.setBounds(10, 126, 654, 132);
 		pBoleta.add(pProducto);
 		
 		JLabel lblCodigoProducto = new JLabel("C\u00D3DIGO");
@@ -173,6 +179,39 @@ public class FrmBoleta extends JDialog {
 		lblAgregarAlCarrito.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 11));
 		lblAgregarAlCarrito.setBounds(444, 86, 68, 34);
 		pProducto.add(lblAgregarAlCarrito);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 279, 654, 167);
+		pBoleta.add(scrollPane);
+		
+		tblVenta = new JTable();
+		model = new DefaultTableModel();
+		tblVenta.setModel(model);
+		model.addColumn("Codigo");
+		model.addColumn("Producto");
+		model.addColumn("Cantidad");
+		model.addColumn("Precio");
+		model.addColumn("Importe");
+		scrollPane.setViewportView(tblVenta);
+		
+		JButton btnNuevaVenta = new JButton("NUEVO");
+		btnNuevaVenta.setBounds(10, 463, 89, 23);
+		pBoleta.add(btnNuevaVenta);
+		
+		JButton btnFinalizarCompra = new JButton("FINALIZAR COMPRA");
+		btnFinalizarCompra.setBounds(126, 463, 131, 23);
+		pBoleta.add(btnFinalizarCompra);
+		
+		txtTotal = new JTextField();
+		txtTotal.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtTotal.setBounds(554, 464, 110, 20);
+		pBoleta.add(txtTotal);
+		txtTotal.setColumns(10);
+		
+		JLabel lblTotalS = new JLabel("Total S/.");
+		lblTotalS.setFont(new Font("SansSerif", Font.BOLD, 12));
+		lblTotalS.setBounds(499, 465, 45, 16);
+		pBoleta.add(lblTotalS);
 
 	}
 	
