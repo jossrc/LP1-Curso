@@ -183,6 +183,11 @@ public class FrmBoleta extends JDialog {
 		lblAgregarAlCarrito.setBounds(444, 86, 68, 34);
 		pProducto.add(lblAgregarAlCarrito);
 		
+		JLabel lblImgVenta = new JLabel("");
+		lblImgVenta.setIcon(new ImageIcon(FrmBoleta.class.getResource("/img/medic-img.png")));
+		lblImgVenta.setBounds(549, 11, 80, 110);
+		pProducto.add(lblImgVenta);
+		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 279, 654, 167);
 		pBoleta.add(scrollPane);
