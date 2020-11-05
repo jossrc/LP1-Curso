@@ -12,6 +12,8 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import model.DetalleBoleta;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -42,9 +44,9 @@ public class FrmBoleta extends JDialog {
 	private JTextField txtNumBoleta;
 	private JTextField txtFecha;
 	
-	// Globales
+	// Globals
 	private double acTotalPagar = 0;
-	//private ArrayList<DetalleBoleta> lstDetalle = new ArrayList<DetalleBoleta>();
+	ArrayList<DetalleBoleta> lstDetalle = new ArrayList<DetalleBoleta>();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
