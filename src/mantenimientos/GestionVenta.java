@@ -74,7 +74,7 @@ public class GestionVenta implements VentaInferface {
 			ok = pst1.executeUpdate();
 			
 			// Registrar los datos de los detalle de boleta
-			String sql2 = "";
+			String sql2 = "insert into tb_det_boleta values (?,?,?,?,?)";
 			for (DetalleBoleta det : detBol) {
 				pst2 = con.prepareStatement(sql2);
 				// Parametros
