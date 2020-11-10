@@ -326,7 +326,11 @@ public class FrmBoleta extends JDialog {
 		
 		insertarNuevaFila(codigo, producto, cantidad, precio);
 		
-		txtTotal.setText(acTotalPagar+"");		
+		txtTotal.setText(acTotalPagar+"");
+		
+		DetalleBoleta detBol = new DetalleBoleta(null, codigo, cantidad, precio, importe);
+		lstDetalle.add(detBol);
+		
 	}
 	
 	private void insertarNuevaFila(String codigo, String producto, int cantidad, double precio ) {
