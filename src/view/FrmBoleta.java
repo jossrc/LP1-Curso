@@ -219,7 +219,7 @@ public class FrmBoleta extends JDialog {
 		model.addColumn("Importe");
 		scrollPane.setViewportView(tblVenta);
 		
-		JButton btnNuevaVenta = new JButton("NUEVO");
+		JButton btnNuevaVenta = new JButton("NUEVO");		
 		btnNuevaVenta.setBounds(10, 463, 89, 23);
 		pBoleta.add(btnNuevaVenta);
 		
@@ -303,6 +303,24 @@ public class FrmBoleta extends JDialog {
 				pagarBoleta();
 			}
 		});
+		
+		btnNuevaVenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				acTotalPagar = 0;
+				lstDetalle = new ArrayList<DetalleBoleta>();	
+				
+				txtCodigoCliente.setText("");
+				txtNombreCompleto.setText("");
+				
+				txtCodigoProducto.setText("");
+				txtDescProducto.setText("");
+				txtCantidadAComprar.setText("");
+				txtStock.setText("");
+				txtPrecioUnit.setText("");
+				
+				txtTotal.setText("");
+			}
+		});
 
 	}
 	
@@ -317,7 +335,6 @@ public class FrmBoleta extends JDialog {
 		String num_bol = obtenerNumBoleta();
 		String fch_bol = obtenerFecha();
 		int cod_cliente = leerCodigoCliente();
-		//double precio = leerPrecio();
 		int cod_vendedor = obtenerCodigoVendedor();
 		double total_bol = acTotalPagar;
 		
