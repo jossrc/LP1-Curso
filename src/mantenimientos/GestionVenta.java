@@ -56,6 +56,21 @@ public class GestionVenta implements VentaInferface {
 		PreparedStatement pst3 = null;
 		
 		try {
+			con = MySQLConexion8.getConexion();
+			// Anula el autocommit
+			con.setAutoCommit(false);
+			// Registrar los datos de la cabecera de boleta
+			String sql1 = "";
+			pst1 = con.prepareStatement(sql1);
+			// Parametros
+			pst1.setString(1, cabeBol.getNum_bol());
+			pst1.setString(2, cabeBol.getFch_bol());
+			pst1.setInt(3, cabeBol.getCod_cliente());
+			pst1.setInt(4, cabeBol.getCod_vendedor());
+			pst1.setDouble(5, cabeBol.getTotal_bol());
+			// Ejecuta la sentencia
+			ok = pst1.executeUpdate();
+			
 			
 		} catch (Exception e) {
 			System.out.println("Error al realizar la venta : " + e.getMessage());
