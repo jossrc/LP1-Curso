@@ -12,6 +12,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import model.CabeceraBoleta;
 import model.DetalleBoleta;
 
 import javax.swing.BorderFactory;
@@ -23,7 +24,9 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 
 public class FrmBoleta extends JDialog {
@@ -302,6 +305,17 @@ public class FrmBoleta extends JDialog {
 		return titled;
 	}
 	
+	private void pagarBoleta() {
+		String num_bol = obtenerNumBoleta(); //TODO
+		String fch_bol = obtenerFecha();
+		int cod_cliente = leerCodigoCliente();
+		double precio = leerPrecio();
+		int cod_vendedor = obtenerCodigoVendedor(); //TODO
+		double total_bol = acTotalPagar;
+		
+		CabeceraBoleta cabeBol = new CabeceraBoleta(num_bol, fch_bol, cod_cliente, cod_vendedor, total_bol);
+	}
+	
 	private void agregarProducto() {
 		String codigo = leerCodProd();
 		String producto = leerNomProd();
@@ -337,9 +351,24 @@ public class FrmBoleta extends JDialog {
 		return txtDescProducto.getText();
 	}
 
-	private String leerCodProd() {
-		// TODO Auto-generated method stub
+	private String leerCodProd() {		
 		return txtCodigoProducto.getText();
+	}
+	
+	private String obtenerNumBoleta() {
+		return "";
+	}
+	
+	private String obtenerFecha() {
+		return new SimpleDateFormat("yyyy/MM/dd").format(new Date());
+	}
+	
+	private int leerCodigoCliente() {
+		return Integer.parseInt(txtCodigoCliente.getText());
+	}
+	
+	private int obtenerCodigoVendedor() {
+		return 0;
 	}
 	
 }
