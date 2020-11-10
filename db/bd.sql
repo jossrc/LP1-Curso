@@ -136,3 +136,14 @@ end $$
 delimiter ;
 
 call usp_generaBoleta()
+
+delimiter $$
+create procedure usp_compraProducto(cant int, idpr char(5))
+begin
+  update tb_productos
+  set stock = stock - cant
+  where idprod = idpr;
+end $$
+delimiter ;
+
+-- call usp_compraProducto(5, 'P0008')
