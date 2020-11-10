@@ -24,7 +24,7 @@ public class GestionVenta implements VentaInferface {
 
 		try {
 			con = MySQLConexion8.getConexion();
-			String sql = "";
+			String sql = "{call usp_generaBoleta()}";
 			pst = con.prepareStatement(sql);
 			rs = pst.executeQuery();
 			
