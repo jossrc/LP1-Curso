@@ -112,7 +112,9 @@ public class GestionVenta implements VentaInferface {
 			}
 		} finally {
 			try {
-				con.close();
+				if (con != null) {
+					con.close();
+				}				
 			} catch (SQLException e3) {
 				System.out.println("Error al cerrar: " + e3.getMessage());
 			}
