@@ -218,6 +218,19 @@ public class FrmPrincipal extends JFrame {
 			}
 		});
 		
+		switch (Logueo.vendedor.getId_tipo()) {
+		case 2:
+			mnMantenimiento.setVisible(false);
+			mnTransaccional.setVisible(false);
+			mnReportes.setVisible(false);
+			break;
+		case 3:
+			mnMantenimiento.setEnabled(false);
+			mntmProductos.setEnabled(false);
+			break;
+		default:
+			break;
+		}		
 	}
 	
 	private void iniciarReloj() {
