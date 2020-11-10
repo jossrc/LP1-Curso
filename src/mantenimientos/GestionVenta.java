@@ -57,8 +57,10 @@ public class GestionVenta implements VentaInferface {
 		
 		try {
 			con = MySQLConexion8.getConexion();
+			
 			// Anula el autocommit
 			con.setAutoCommit(false);
+			
 			// Registrar los datos de la cabecera de boleta
 			String sql1 = "";
 			pst1 = con.prepareStatement(sql1);
@@ -70,6 +72,20 @@ public class GestionVenta implements VentaInferface {
 			pst1.setDouble(5, cabeBol.getTotal_bol());
 			// Ejecuta la sentencia
 			ok = pst1.executeUpdate();
+			
+			// Registrar los datos de los detalle de boleta
+			String sql2 = "";
+			for (DetalleBoleta det : detBol) {
+				pst2 = con.prepareStatement(sql2);
+				// Parametros
+				pst2.setString(1, cabeBol.getNum_bol());
+				pst2.setString(2, det.getIdprod());
+				pst2.setInt(3, det.getCantidad());
+				pst2.setDouble(4, det.getPrecioVta());
+				pst2.setDouble(5, det.getImporte());
+				// Ejecuta la sentencia
+				ok = pst2.executeUpdate();
+			}
 			
 			
 		} catch (Exception e) {
