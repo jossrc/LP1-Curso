@@ -48,8 +48,33 @@ public class GestionVenta implements VentaInferface {
 
 	@Override
 	public int realizarVenta(CabeceraBoleta cabeBol, ArrayList<DetalleBoleta> detBol) {
-		// TODO Auto-generated method stub
-		return 0;
+		int ok = -1;
+		
+		Connection con = null;
+		PreparedStatement pst1 = null;
+		PreparedStatement pst2 = null;
+		PreparedStatement pst3 = null;
+		
+		try {
+			
+		} catch (Exception e) {
+			System.out.println("Error al realizar la venta : " + e.getMessage());
+			ok = -1;
+			
+			try {
+				con.rollback();
+			} catch (SQLException e2) {
+				System.out.println("Error al restaurar: " + e2.getMessage());
+			}
+		} finally {
+			try {
+				con.close();
+			} catch (SQLException e3) {
+				System.out.println("Error al cerrar: " + e3.getMessage());
+			}
+		}
+		
+		return ok;
 	}
 
 }
