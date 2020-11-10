@@ -62,7 +62,7 @@ public class GestionVenta implements VentaInferface {
 			con.setAutoCommit(false);
 			
 			// Registrar los datos de la cabecera de boleta
-			String sql1 = "";
+			String sql1 = "insert into tb_cab_boleta values (?,?,?,?,?)";
 			pst1 = con.prepareStatement(sql1);
 			// Parametros
 			pst1.setString(1, cabeBol.getNum_bol());
