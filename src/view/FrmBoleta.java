@@ -12,6 +12,7 @@ import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
+import mantenimientos.GestionVenta;
 import model.CabeceraBoleta;
 import model.DetalleBoleta;
 
@@ -221,7 +222,7 @@ public class FrmBoleta extends JDialog {
 		btnNuevaVenta.setBounds(10, 463, 89, 23);
 		pBoleta.add(btnNuevaVenta);
 		
-		JButton btnFinalizarCompra = new JButton("FINALIZAR COMPRA");
+		JButton btnFinalizarCompra = new JButton("FINALIZAR COMPRA");		
 		btnFinalizarCompra.setBounds(126, 463, 131, 23);
 		pBoleta.add(btnFinalizarCompra);
 		
@@ -295,6 +296,12 @@ public class FrmBoleta extends JDialog {
 				agregarProducto();
 			}
 		});
+		
+		btnFinalizarCompra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 
 	}
 	
@@ -360,7 +367,7 @@ public class FrmBoleta extends JDialog {
 	}
 	
 	private String obtenerNumBoleta() {
-		return "";
+		return new GestionVenta().generaNumBoleta();
 	}
 	
 	private String obtenerFecha() {
