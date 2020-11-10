@@ -310,7 +310,7 @@ public class FrmBoleta extends JDialog {
 		String fch_bol = obtenerFecha();
 		int cod_cliente = leerCodigoCliente();
 		double precio = leerPrecio();
-		int cod_vendedor = obtenerCodigoVendedor(); //TODO
+		int cod_vendedor = obtenerCodigoVendedor();
 		double total_bol = acTotalPagar;
 		
 		CabeceraBoleta cabeBol = new CabeceraBoleta(num_bol, fch_bol, cod_cliente, cod_vendedor, total_bol);
@@ -368,7 +368,7 @@ public class FrmBoleta extends JDialog {
 	}
 	
 	private int obtenerCodigoVendedor() {
-		return 0;
+		return Logueo.vendedor.getCodigo();
 	}
 	
 }

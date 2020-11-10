@@ -33,6 +33,9 @@ public class Logueo extends JFrame {
 	private JTextField txtUsuario;
 	private JPasswordField txtPassword;
 	public static JLabel lblTiempo;
+	
+	// GLOBAL	
+	public static Usuario vendedor = new Usuario();
 
 	public static void main(String[] args) {
 		
@@ -150,14 +153,14 @@ public class Logueo extends JFrame {
 		});
 		
 	}
-	
+
 	private void acceder() {
 		String usuario = leerUsuario();
 		String clave = leerClave();
 		
-		Usuario u = new GestionUsuarios().validarAcceso(usuario, clave);
+		vendedor = new GestionUsuarios().validarAcceso(usuario, clave);
 		
-		if ( u != null) {
+		if ( vendedor != null) {
 			abrirVentanaPrincipal();
 			dispose();
 		} else {
