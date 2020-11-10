@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
@@ -299,7 +300,7 @@ public class FrmBoleta extends JDialog {
 		
 		btnFinalizarCompra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				pagarBoleta();
 			}
 		});
 
@@ -311,16 +312,24 @@ public class FrmBoleta extends JDialog {
 		
 		return titled;
 	}
-	
+
 	private void pagarBoleta() {
-		String num_bol = obtenerNumBoleta(); //TODO
+		String num_bol = obtenerNumBoleta();
 		String fch_bol = obtenerFecha();
 		int cod_cliente = leerCodigoCliente();
-		double precio = leerPrecio();
+		//double precio = leerPrecio();
 		int cod_vendedor = obtenerCodigoVendedor();
 		double total_bol = acTotalPagar;
 		
 		CabeceraBoleta cabeBol = new CabeceraBoleta(num_bol, fch_bol, cod_cliente, cod_vendedor, total_bol);
+		
+		int ok = new GestionVenta().realizarVenta(cabeBol, lstDetalle);
+		
+		if (ok == -1) {
+			System.out.println("Oops no se pudo efectuar la venta");
+		} else {
+			JOptionPane.showMessageDialog(this, "Venta exitosa :D");
+		}
 	}
 	
 	private void agregarProducto() {
