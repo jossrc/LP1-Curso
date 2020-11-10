@@ -105,6 +105,28 @@ delimiter ;
 
 call usp_consulta(2);
 
+create table tb_cab_boleta(
+num_bol      char(5) not null,
+fch_bol    date,
+cod_cliente  int not null,
+cod_vendedor int not null,
+total_bol decimal(8,2),
+primary key (num_bol),
+foreign key (cod_cliente) references tb_usuarios(codigo),
+foreign key (cod_vendedor) references tb_usuarios(codigo)
+);
+
+create table tb_det_boleta(
+num_bol     char(5) not null,
+idprod      char(5) not null,
+cantidad    int,
+preciovta   decimal(8,2),
+importe		decimal(8,2),
+primary key (num_bol,idprod),
+foreign key (num_bol) references tb_cab_boleta(num_bol),
+foreign key (idprod) references tb_productos(idprod)
+);
+
 delimiter $$
 create procedure usp_generaBoleta()
 begin
