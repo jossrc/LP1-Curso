@@ -104,3 +104,13 @@ end $$
 delimiter ;
 
 call usp_consulta(2);
+
+delimiter $$
+create procedure usp_generaBoleta()
+begin
+  select substring(num_bol, 2)
+  from tb_cab_boleta order by num_bol desc limit 1;
+end $$
+delimiter ;
+
+call usp_generaBoleta()
