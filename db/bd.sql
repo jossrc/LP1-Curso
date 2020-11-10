@@ -147,3 +147,6 @@ end $$
 delimiter ;
 
 -- call usp_compraProducto(5, 'P0008')
+
+select * from tb_cab_boleta;
+select * from tb_det_boleta;
