@@ -98,6 +98,8 @@ public class GestionVenta implements VentaInferface {
 				ok = pst3.executeUpdate();
 			}
 			
+			// Confirmar las transacciones si no hay problemas
+			con.commit();			
 			
 		} catch (Exception e) {
 			System.out.println("Error al realizar la venta : " + e.getMessage());
