@@ -87,6 +87,17 @@ public class GestionVenta implements VentaInferface {
 				ok = pst2.executeUpdate();
 			}
 			
+			// Actualizar los productos registrados en el detalle
+			String sql3 = "";
+			for (DetalleBoleta det : detBol) {
+				pst3 = con.prepareStatement(sql3);
+				// Parametros
+				pst3.setInt(1, det.getCantidad());
+				pst3.setString(2, det.getIdprod());
+				// Ejecuta la sentencia
+				ok = pst3.executeUpdate();
+			}
+			
 			
 		} catch (Exception e) {
 			System.out.println("Error al realizar la venta : " + e.getMessage());
