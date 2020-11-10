@@ -92,17 +92,17 @@ public class FrmPrincipal extends JFrame {
 		mnTransaccional.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/tran-icon.png")));
 		menuBar.add(mnTransaccional);
 		
-		JMenuItem mntmVentas_1 = new JMenuItem("Ventas");
-		mntmVentas_1.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/shopping-icon.png")));
-		mnTransaccional.add(mntmVentas_1);
+		JMenuItem mntmVentas = new JMenuItem("Ventas");		
+		mntmVentas.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/shopping-icon.png")));
+		mnTransaccional.add(mntmVentas);
 
 		JMenu mnReportes = new JMenu("Reportes");
 		mnReportes.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/report-icon.png")));
 		menuBar.add(mnReportes);
 
-		JMenuItem mntmVentas = new JMenuItem("Ventas");		
-		mntmVentas.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/sale-icon.png")));
-		mnReportes.add(mntmVentas);
+		JMenuItem mntmRepVentas = new JMenuItem("Ventas");		
+		mntmRepVentas.setIcon(new ImageIcon(FrmPrincipal.class.getResource("/img/sale-icon.png")));
+		mnReportes.add(mntmRepVentas);
 		
 		JMenuItem mntmRepUsuarios = new JMenuItem("Usuarios");		
 		mnReportes.add(mntmRepUsuarios);
@@ -161,7 +161,7 @@ public class FrmPrincipal extends JFrame {
 			}
 		});
 		
-		mntmVentas.addActionListener(new ActionListener() {
+		mntmRepVentas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				FrmReptVtas reptVtas = new FrmReptVtas();
 				reptVtas.setLocationRelativeTo(null);
@@ -182,6 +182,14 @@ public class FrmPrincipal extends JFrame {
 				FrmRegUser regUser = new FrmRegUser();
 				regUser.setLocationRelativeTo(null);
 				regUser.setVisible(true);				
+			}
+		});
+		
+		mntmVentas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FrmBoleta venta = new FrmBoleta();
+				venta.setLocationRelativeTo(null);
+				venta.setVisible(true);
 			}
 		});
 		
