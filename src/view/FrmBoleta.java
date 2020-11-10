@@ -357,13 +357,18 @@ public class FrmBoleta extends JDialog {
 		
 		double importe = cantidad * precio;
 		
-		insertarNuevaFila(codigo, producto, cantidad, precio);
+		int stock = leerStock();
 		
-		txtTotal.setText(acTotalPagar+"");
-		
-		DetalleBoleta detBol = new DetalleBoleta(null, codigo, cantidad, precio, importe);
-		lstDetalle.add(detBol);
-		
+		if (cantidad > stock) {
+			JOptionPane.showMessageDialog(this, "La cantidad seleccionada supera el stock actual");
+		} else {
+			insertarNuevaFila(codigo, producto, cantidad, precio);
+			
+			txtTotal.setText(acTotalPagar+"");
+			
+			DetalleBoleta detBol = new DetalleBoleta(null, codigo, cantidad, precio, importe);
+			lstDetalle.add(detBol);
+		}
 	}
 	
 	private void insertarNuevaFila(String codigo, String producto, int cantidad, double precio ) {
