@@ -88,7 +88,7 @@ public class GestionVenta implements VentaInferface {
 			}
 			
 			// Actualizar los productos registrados en el detalle
-			String sql3 = "";
+			String sql3 = "{call usp_compraProducto(?, ?)}";
 			for (DetalleBoleta det : detBol) {
 				pst3 = con.prepareStatement(sql3);
 				// Parametros
