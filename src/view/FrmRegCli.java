@@ -207,7 +207,7 @@ public class FrmRegCli extends JDialog {
 	}
 	
 	private String leerTelefono() {
-		if (!txtTelefono.getText().trim().matches("[0-9]{3}[-]{0,1}[0-9]{4}")) {
+		if (!txtTelefono.getText().trim().matches("([0-9]{3}[-]{0,1}[0-9]{4}")) {
 			JOptionPane.showMessageDialog(this, "Teléfono inválido");
 			return null;
 		}
