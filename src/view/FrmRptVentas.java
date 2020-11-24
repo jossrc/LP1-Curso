@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -15,11 +14,10 @@ import java.awt.event.ActionEvent;
 
 public class FrmRptVentas extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -33,9 +31,6 @@ public class FrmRptVentas extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public FrmRptVentas() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -44,11 +39,7 @@ public class FrmRptVentas extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnReportes = new JButton("Consultar");
-		btnReportes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		JButton btnReportes = new JButton("Consultar");		
 		btnReportes.setBounds(295, 39, 89, 23);
 		contentPane.add(btnReportes);
 		
@@ -68,5 +59,11 @@ public class FrmRptVentas extends JFrame {
 		JLabel lblReporteDeVentas = new JLabel("Reporte de Ventas por Fecha :");
 		lblReporteDeVentas.setBounds(10, 0, 251, 29);
 		contentPane.add(lblReporteDeVentas);
+		
+		btnReportes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 	}
 }

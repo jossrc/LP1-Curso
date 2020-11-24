@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.EventQueue;
 
@@ -22,12 +21,10 @@ import java.awt.event.ActionEvent;
 
 public class FrmLstProductos extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextArea txtS;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -41,9 +38,6 @@ public class FrmLstProductos extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public FrmLstProductos() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -61,34 +55,35 @@ public class FrmLstProductos extends JFrame {
 		txtS.setBounds(10, 51, 414, 155);
 		contentPane.add(txtS);
 		
-		JButton btnListado = new JButton("Listado");
+		JButton btnListado = new JButton("Listado");		
+		btnListado.setBounds(22, 227, 89, 23);
+		contentPane.add(btnListado);
+		
+		JButton btnPdf = new JButton("PDF");		
+		btnPdf.setBounds(121, 227, 89, 23);
+		contentPane.add(btnPdf);
+		
 		btnListado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// llamar al método
 				listado();
 			}
 		});
-		btnListado.setBounds(22, 227, 89, 23);
-		contentPane.add(btnListado);
 		
-		JButton btnPdf = new JButton("PDF");
 		btnPdf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				imprimePDF();
 			}
 		});
-		btnPdf.setBounds(121, 227, 89, 23);
-		contentPane.add(btnPdf);
 	}
+	
 	String fecha = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
 	
-	void imprimePDF() {
+	private void imprimePDF() {
 		
 	}
-	
-	
-	
-	void listado(){
+
+	private void listado(){
 		
 	}
 }
