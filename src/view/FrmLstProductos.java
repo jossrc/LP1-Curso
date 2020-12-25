@@ -7,8 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import mantenimientos.GestionRepProductCat;
+import model.RepProductoCategoria;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -84,7 +87,19 @@ public class FrmLstProductos extends JFrame {
 	}
 
 	private void listado(){
-		
+		ArrayList<RepProductoCategoria> productos = new GestionRepProductCat().listado();
+		txtS.setText(">>>>>>>>> LISTADO PRODUCTOS <<<<<<<<<<< \n\n");
+		if (productos == null) {
+			JOptionPane.showMessageDialog(this, "No existen productos");
+		} else {
+			for (RepProductoCategoria p : productos) {
+				txtS.append(p.getCodigo() + "\n");
+				txtS.append(p.getNombre() + "\n");
+				txtS.append(p.getStock() + "\n");
+				txtS.append(p.getPrecio() + "\n");
+				txtS.append(p.getCategoria() + "\n");
+			}
+		}
 	}
 }
 
